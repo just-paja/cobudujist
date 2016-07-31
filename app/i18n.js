@@ -8,11 +8,9 @@ import { addLocaleData } from 'react-intl';
 
 import enLocaleData from 'react-intl/locale-data/en';
 
-export const appLocales = [
-  'en',
-];
+export const appLocales = ['cs'];
 
-import enTranslationMessages from './translations/en.json';
+import csTranslationMessages from './translations/cs.json';
 
 addLocaleData(enLocaleData);
 
@@ -26,5 +24,5 @@ const formatTranslationMessages = (messages) => {
 };
 
 export const translationMessages = {
-  en: formatTranslationMessages(enTranslationMessages),
+  cs: formatTranslationMessages(csTranslationMessages),
 };
