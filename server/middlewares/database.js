@@ -177,8 +177,7 @@ const prepare = () => connect()
 
 const middleware = database => (req, res, next) => {
   // eslint-disable-next-line no-param-reassign
-  req.models = models;
-  console.log(req.models);
+  req.db = database.models;
   next();
 };
 

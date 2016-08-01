@@ -9,13 +9,17 @@ const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
+const api = require('./api');
 const database = require('./middlewares/database');
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
 database.prepare()
-  .then(db => app.use(database.middleware(db)))
+  .then(db => app
+    .use(database.middleware(db))
+    .use('/api', api)
+  )
   .then(() => {
     // In production we need to pass these values in instead of relying on webpack
     setup(app, {
