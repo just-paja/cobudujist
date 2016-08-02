@@ -16,8 +16,10 @@ class HomePage extends Component {
     const { recipeHint } = this.props;
 
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
+      <div>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         {recipeHint ? (
           <RecipeLink
             invitation={messages.recipe}
@@ -25,7 +27,7 @@ class HomePage extends Component {
             recipeName={recipeHint.name}
           />
         ) : null}
-      </h1>
+      </div>
     );
   }
 }
