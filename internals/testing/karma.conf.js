@@ -30,7 +30,8 @@ module.exports = (config) => {
     ],
 
     preprocessors: {
-      ['./test-bundler.js']: ['webpack', 'sourcemap'], // eslint-disable-line no-useless-computed-key
+      // eslint-disable-next-line no-useless-computed-key
+      ['./test-bundler.js']: ['webpack', 'sourcemap'],
     },
 
     webpack: webpackConfig,

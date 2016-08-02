@@ -43,6 +43,7 @@ module.exports = require('./webpack.base.babel')({
   plugins: dependencyHandlers().concat(plugins), // eslint-disable-line no-use-before-define
 
   // Load the CSS in a style tag in development
+  // eslint-disable-next-line max-len
   cssLoaders: 'style-loader!css-loader?localIdentName=[local]__[path][name]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
 
   // Process the CSS with PostCSS
@@ -90,6 +91,7 @@ function dependencyHandlers() {
     ];
   }
 
+  // eslint-disable-next-line max-len
   const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/react-boilerplate-dlls');
 
   /**
@@ -115,11 +117,13 @@ function dependencyHandlers() {
   }
 
   // If DLLs are explicitly defined, we automatically create a DLLReferencePlugin for each of them.
+  // eslint-disable-next-line max-len
   const dllManifests = Object.keys(dllPlugin.dlls).map((name) => path.join(dllPath, `/${name}.json`));
 
   return dllManifests.map((manifestPath) => {
     if (!fs.existsSync(path)) {
       if (!fs.existsSync(manifestPath)) {
+        // eslint-disable-next-line max-len
         logger.error(`The following Webpack DLL manifest is missing: ${path.basename(manifestPath)}`);
         logger.error(`Expected to find it in ${dllPath}`);
         logger.error('Please run: npm run build:dll');
@@ -150,6 +154,7 @@ function templateContent() {
   const body = doc.find('body');
   const dllNames = !dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(dllPlugin.dlls);
 
+  // eslint-disable-next-line max-len
   dllNames.forEach(dllName => body.append(`<script data-dll='true' src='/${dllName}.dll.js'></script>`));
 
   return doc.toString();

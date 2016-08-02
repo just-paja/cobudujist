@@ -36,6 +36,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
+      // eslint-disable-next-line max-len
       pattern: /(from\s'.\/translations\/[a-z]+.json';\n)(?!.*from\s'.\/translations\/[a-z]+.json';)/g,
       templateFile: './language/translation-messages.hbs',
     });
@@ -48,6 +49,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
+      // eslint-disable-next-line max-len
       pattern: /([a-z]+:\sformatTranslationMessages\([a-z]+TranslationMessages\),\n)(?!.*[a-z]+:\sformatTranslationMessages\([a-z]+TranslationMessages\),)/g,
       templateFile: './language/format-translation-messages.hbs',
     });
@@ -60,6 +62,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/app.js',
+      // eslint-disable-next-line max-len
       pattern: /(System\.import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*System\.import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
       templateFile: './language/polyfill-intl-locale.hbs',
     });

@@ -19,7 +19,8 @@ module.exports = {
     default: 'Button',
     validate: value => {
       if ((/.+/).test(value)) {
-        return componentExists(value) ? 'A component or container with this name already exists' : true;
+        return componentExists(value) ?
+          'A component or container with this name already exists' : true;
       }
 
       return 'The name is required';
@@ -40,7 +41,9 @@ module.exports = {
     const actions = [{
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.js',
-      templateFile: data.type === 'ES6 Class' ? './component/es6.js.hbs' : './component/stateless.js.hbs',
+      templateFile: data.type === 'ES6 Class' ?
+        './component/es6.js.hbs' :
+        './component/stateless.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
