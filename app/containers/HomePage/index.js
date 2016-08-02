@@ -1,11 +1,13 @@
+import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
 import messages from './messages';
 
+import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 class HomePage extends Component {
   componentDidMount() {
-    this.props.fetchRandomRecipe();
+    this.props.dispatch({ type: constants.HOME_PAGE_RENDERED });
   }
 
   render() {
@@ -18,7 +20,7 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-  fetchRandomRecipe: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default HomePage;
+export default connect()(HomePage);

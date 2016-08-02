@@ -30,7 +30,7 @@ export default function createRoutes(store) {
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
-          injectReducer(reducer.default);
+          injectReducer('home', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });

@@ -12,7 +12,8 @@ import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 import { selectLocale } from './selectors';
 
-export class LanguageProvider extends React.Component { // eslint-disable-line react/prefer-stateless-function
+// eslint-disable-next-line react/prefer-stateless-function
+export class LanguageProvider extends React.Component {
   render() {
     return (
       <IntlProvider locale={this.props.locale} messages={this.props.messages[this.props.locale]}>

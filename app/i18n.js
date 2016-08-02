@@ -6,13 +6,13 @@
  */
 import { addLocaleData } from 'react-intl';
 
-import enLocaleData from 'react-intl/locale-data/en';
+import csLocaleData from 'react-intl/locale-data/cs';
 
 export const appLocales = ['cs'];
 
 import csTranslationMessages from './translations/cs.json';
 
-addLocaleData(enLocaleData);
+addLocaleData(csLocaleData);
 
 const formatTranslationMessages = (messages) => {
   const formattedMessages = {};

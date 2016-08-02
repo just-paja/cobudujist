@@ -1,26 +1,22 @@
 /*
- *
  * LanguageProvider reducer
- *
  */
 
-import { fromJS } from 'immutable';
-import {
-  CHANGE_LOCALE,
-} from './constants';
+import update from 'react-addons-update';
+import { CHANGE_LOCALE } from './constants';
 
-const initialState = fromJS({
-  locale: 'en',
-});
+const initialState = {
+  locale: 'cs',
+};
 
 function languageProviderReducer(state = initialState, action) {
-  switch (action.type) {
-    case CHANGE_LOCALE:
-      return state
-        .set('locale', action.locale);
-    default:
-      return state;
+  if (action.type === CHANGE_LOCALE) {
+    return update(state, {
+      locale: { $set: action.locale },
+    });
   }
+
+  return state;
 }
 
 export default languageProviderReducer;

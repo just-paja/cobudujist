@@ -85,7 +85,7 @@ if (module.hot) {
 if (!window.Intl) {
   Promise.all([
     System.import('intl'),
-    System.import('intl/locale-data/jsonp/en.js'),
+    System.import('intl/locale-data/jsonp/cs.js'),
   ]).then(() => render(translationMessages));
 } else {
   render(translationMessages);

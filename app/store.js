@@ -3,13 +3,18 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
+import createLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 const devtools = window.devToolsExtension || (() => noop => noop);
+
+const BROWSER_DEVELOPMENT = (
+  process.env.NODE_ENV !== 'production' && // eslint-disable-line no-undef
+  process.env.IS_BROWSER // eslint-disable-line no-undef
+);
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -20,6 +25,10 @@ export default function configureStore(initialState = {}, history) {
     routerMiddleware(history),
   ];
 
+  if (BROWSER_DEVELOPMENT) {
+    middlewares.push(createLogger({ collapsed: true }));
+  }
+
   const enhancers = [
     applyMiddleware(...middlewares),
     devtools(),
@@ -27,7 +36,7 @@ export default function configureStore(initialState = {}, history) {
 
   const store = createStore(
     createReducer(),
-    fromJS(initialState),
+    initialState,
     compose(...enhancers)
   );
 
