@@ -10,4 +10,8 @@ export default defineMessages({
     id: 'app.components.HomePage.header',
     defaultMessage: 'Co budu jíst?',
   },
+  recipe: {
+    id: 'app.components.HomePage.suggestion',
+    defaultMessage: 'Dej si',
+  },
 });

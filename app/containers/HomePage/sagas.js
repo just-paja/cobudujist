@@ -7,9 +7,11 @@ export function* fetchRandomRecipe() {
   yield put({ type: constants.RECIPE_HINT_LOADING });
   try {
     const res = yield call(api.fetchRandomRecipe);
+    const recipe = yield res.json();
+
     yield put({
       type: constants.RECIPE_HINT_RECEIVED,
-      recipe: res.json(),
+      recipe,
     });
   } catch (e) {
     yield put({ type: constants.RECIPE_HINT_FAILED });
