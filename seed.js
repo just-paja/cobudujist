@@ -3,6 +3,7 @@ module.exports = [
     model: 'Recipe',
     records: [
       { id: 1, name: 'test food' },
+      { id: 2, name: 'secondary test food' },
     ],
   },
   {
