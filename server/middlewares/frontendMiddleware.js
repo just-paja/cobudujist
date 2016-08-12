@@ -1,7 +1,8 @@
 /* eslint-disable global-require */
-const express = require('express');
-const path = require('path');
-const compression = require('compression');
+import express from 'express';
+import path from 'path';
+import compression from 'compression';
+import render from './render';
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 
 // Dev middleware
@@ -22,7 +23,6 @@ const addDevMiddlewares = (app, webpackConfig) => {
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
-  const fs = middleware.fileSystem;
 
   if (pkg.dllPlugin) {
     app.get(/\.dll\.js$/, (req, res) => {
@@ -30,16 +30,6 @@ const addDevMiddlewares = (app, webpackConfig) => {
       res.sendFile(path.join(process.cwd(), pkg.dllPlugin.path, filename));
     });
   }
-
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
 };
 
 // Production middlewares
@@ -52,8 +42,6 @@ const addProdMiddlewares = (app, options) => {
   // and other good practices on official Express.js docs http://mxs.is/googmy
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
-
-  app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
 };
 
 /**
@@ -69,5 +57,6 @@ module.exports = (app, options) => {
     addDevMiddlewares(app, webpackConfig);
   }
 
+  app.get('*', render);
   return app;
 };

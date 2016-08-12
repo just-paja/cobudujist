@@ -8,8 +8,8 @@ import createLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
-const sagaMiddleware = createSagaMiddleware();
-const devtools = window.devToolsExtension || (() => noop => noop);
+export const sagaMiddleware = createSagaMiddleware();
+const devtools = typeof window !== 'undefined' && window.devToolsExtension || (() => noop => noop);
 
 const BROWSER_DEVELOPMENT = (
   process.env.NODE_ENV !== 'production' && // eslint-disable-line no-undef

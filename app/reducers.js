@@ -5,7 +5,7 @@
 
 import { combineReducers } from 'redux';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import languageProviderReducer from './containers/LanguageProvider/reducer';
 import update from 'react-addons-update';
 
 /*
@@ -24,7 +24,7 @@ const routeInitialState = {
 /**
  * Merge route into the global application state
  */
-function routeReducer(state = routeInitialState, action) {
+const route = (state = routeInitialState, action) => {
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
@@ -34,14 +34,22 @@ function routeReducer(state = routeInitialState, action) {
     default:
       return state;
   }
-}
+};
+
+/**
+ * Merge route into the global application state
+ */
+const device = (state = { isMobile: false }) => state;
+const server = (state = { host: 'localhost', protocol: 'http' }) => state;
 
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
 export default function createReducer(asyncReducers) {
   return combineReducers({
-    route: routeReducer,
+    route,
+    device,
+    server,
     language: languageProviderReducer,
     ...asyncReducers,
   });

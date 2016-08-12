@@ -29,7 +29,9 @@ module.exports = {
     library: '[name]',
   },
   plugins: [
-    // eslint-disable-next-line max-len
-    new webpack.DllPlugin({ name: '[name]', path: join(outputPath, '[name].json') }), // eslint-disable-line no-new
+    new webpack.DllPlugin({
+      name: '[name]',
+      path: join(outputPath, '[name].json'),
+    }),
   ],
 };
