@@ -1,12 +1,12 @@
 /* eslint consistent-return:0 */
 
 import api from './api';
-import database from './middlewares/database';
 import device from 'express-device';
 import express from 'express';
 import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
 
+import { connect, middleware, seed } from './middlewares/database';
 import { resolve } from 'path';
 
 const argv = require('minimist')(process.argv.slice(2));
@@ -18,10 +18,13 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-database.prepare()
-  .then(db => app
+connect()
+  .then(() => logger.databaseConnected())
+  .then(seed)
+  .then(() => logger.databaseSeeded())
+  .then(() => app
     .use(device.capture())
-    .use(database.middleware(db))
+    .use(middleware())
     .use('/api', api)
   )
   .then(() => {
@@ -34,7 +37,6 @@ database.prepare()
 
     // get the intended port number, use port 3000 if not provided
     const port = argv.port || process.env.PORT || 3000;
-
 
     // Start your app.
     app.listen(port, (err) => {

@@ -9,6 +9,7 @@ const config = {
   password: process.env.DB_PASS || '',
   storage: process.env.DB_STORAGE || 'database.sqlite',
   user: process.env.DB_USER || '',
+  logging: process.env.DB_LOGGING || false,
 };
 
 const db = new Sequelize(config.database, config.user, config.password, config);
@@ -101,9 +102,6 @@ const seed = () => {
 
 const connect = () => db
   .authenticate()
-  .then(() => {
-    process.stdout.write(`Connected to database ${config.database}\n`);
-  })
   .catch(err => {
     process.stdout.write('Could not connect to database\n');
     // eslint-disable-next-line no-console
@@ -122,10 +120,10 @@ const prepare = () => connect()
   })
   .then(() => ({ db, models }));
 
-const middleware = database => (req, res, next) => {
+const middleware = () => (req, res, next) => {
   // eslint-disable-next-line no-param-reassign
-  req.db = database.models;
+  req.db = models;
   next();
 };
 
-module.exports = { middleware, prepare };
+module.exports = { middleware, prepare, connect, seed };

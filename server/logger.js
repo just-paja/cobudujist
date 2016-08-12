@@ -15,9 +15,17 @@ const logger = {
     console.error(chalk.red(err));
   },
 
+  databaseConnected: () => {
+    console.log(`${chalk.green('✓')} Database connected`);
+  },
+
+  databaseSeeded: () => {
+    console.log(`${chalk.green('✓')} Database seeded `);
+  },
+
   // Called when express.js app starts on given port w/o errors
   appStarted: (port, tunnelStarted) => {
-    console.log(`Server started ${chalk.green('✓')}`);
+    console.log(`${chalk.green('✓')} Server started `);
 
     // If the tunnel started, log that and the URL it's available at
     if (tunnelStarted) {
