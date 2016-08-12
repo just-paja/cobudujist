@@ -4,6 +4,8 @@
 // about the code splitting business
 import { getAsyncInjectors } from './utils/asyncInjectors';
 
+import App from './containers/App';
+
 import HomeReducer from './containers/HomePage/reducer';
 import HomeSagas from './containers/HomePage/sagas';
 import HomePage from './containers/HomePage';
@@ -16,19 +18,25 @@ export default function createRoutes(store) {
 
   return [
     {
-      path: '/',
-      name: 'home',
-      getComponent(nextState, next) {
-        injectReducer('home', HomeReducer);
-        injectSagas(HomeSagas);
-        next(null, HomePage);
-      },
-    }, {
-      path: '*',
-      name: 'notfound',
-      getComponent(nextState, next) {
-        next(null, NotFoundPage);
-      },
+      component: App,
+      childRoutes: [
+        {
+          path: '/',
+          name: 'home',
+          getComponent(nextState, next) {
+            injectReducer('home', HomeReducer);
+            injectSagas(HomeSagas);
+            next(null, HomePage);
+          },
+        },
+        {
+          path: '*',
+          name: 'notfound',
+          getComponent(nextState, next) {
+            next(null, NotFoundPage);
+          },
+        },
+      ],
     },
   ];
 }
