@@ -4,10 +4,6 @@
 // about the code splitting business
 import { getAsyncInjectors } from './utils/asyncInjectors';
 
-const loadModule = (cb) => (componentModule) => {
-  cb(null, componentModule.default);
-};
-
 import HomeReducer from './containers/HomePage/reducer';
 import HomeSagas from './containers/HomePage/sagas';
 import HomePage from './containers/HomePage';
@@ -22,18 +18,16 @@ export default function createRoutes(store) {
     {
       path: '/',
       name: 'home',
-      getComponent(nextState, cb) {
-        const renderRoute = loadModule(cb);
-
+      getComponent(nextState, next) {
         injectReducer('home', HomeReducer);
         injectSagas(HomeSagas);
-        renderRoute(HomePage);
+        next(null, HomePage);
       },
     }, {
       path: '*',
       name: 'notfound',
-      getComponent(nextState, cb) {
-        loadModule(cb)(NotFoundPage);
+      getComponent(nextState, next) {
+        next(null, NotFoundPage);
       },
     },
   ];
