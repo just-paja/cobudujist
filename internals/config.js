@@ -33,6 +33,7 @@ const ReactBoilerplate = {
         'express-device',
         'serialize-javascript',
         'sequelize',
+        'css-modules-require-hook',
       ],
 
       /**

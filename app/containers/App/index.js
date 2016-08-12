@@ -12,7 +12,6 @@
  */
 
 import React from 'react';
-
 import styles from './styles.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
