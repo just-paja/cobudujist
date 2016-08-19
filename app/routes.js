@@ -6,7 +6,6 @@ import { getAsyncInjectors } from './utils/asyncInjectors';
 
 import App from './containers/App';
 
-import HomeReducer from './containers/HomePage/reducer';
 import HomeSagas from './containers/HomePage/sagas';
 import HomePage from './containers/HomePage';
 
@@ -14,7 +13,7 @@ import NotFoundPage from './containers/NotFoundPage';
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer, injectSagas } = getAsyncInjectors(store);
+  const { injectSagas } = getAsyncInjectors(store);
 
   return [
     {
@@ -24,9 +23,15 @@ export default function createRoutes(store) {
           path: '/',
           name: 'home',
           getComponent(nextState, next) {
-            injectReducer('home', HomeReducer);
             injectSagas(HomeSagas);
             next(null, HomePage);
+          },
+        },
+        {
+          path: '/recipe/*',
+          name: 'recipe',
+          getComponent: (nextState, next) => {
+            next(null);
           },
         },
         {

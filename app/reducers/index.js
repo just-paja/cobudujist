@@ -5,8 +5,11 @@
 
 import { combineReducers } from 'redux';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import languageProviderReducer from './containers/LanguageProvider/reducer';
+import languageProviderReducer from '../containers/LanguageProvider/reducer';
 import update from 'react-addons-update';
+
+import device from './device';
+import server from './server';
 
 /*
  * routeReducer
@@ -36,11 +39,6 @@ const route = (state = routeInitialState, action) => {
   }
 };
 
-/**
- * Merge route into the global application state
- */
-const device = (state = { isMobile: false }) => state;
-const server = (state = { host: 'localhost', protocol: 'http' }) => state;
 
 /**
  * Creates the main reducer with the asynchronously loaded ones

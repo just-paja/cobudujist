@@ -3,14 +3,14 @@ import { combineReducers } from 'redux';
 import {
   RECIPE_HINT_LOADING,
   RECIPE_HINT_RECEIVED,
-} from '../../constants/actions';
+} from '../constants/actions';
 
 const defaultState = {
   recipe: null,
   loading: false,
 };
 
-const recipeHintReducers = {
+const hintReducers = {
   [RECIPE_HINT_LOADING]: state => update(state, {
     loading: { $set: true },
   }),
@@ -20,14 +20,14 @@ const recipeHintReducers = {
   }),
 };
 
-export function recipeHint(state = defaultState, action = {}) {
-  if (action.type && (typeof recipeHintReducers[action.type] === 'function')) {
-    return recipeHintReducers[action.type](state, action);
+export function hint(state = defaultState, action = {}) {
+  if (action.type && (typeof hintReducers[action.type] === 'function')) {
+    return hintReducers[action.type](state, action);
   }
 
   return state;
 }
 
 export default combineReducers({
-  recipeHint,
+  hint,
 });
