@@ -8,23 +8,23 @@ import { FormattedMessage } from 'react-intl';
 import { selectRecipeHint } from './selectors';
 
 class HomePage extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch({ type: constants.HOME_PAGE_RENDERED });
   }
 
   render() {
-    const { recipeHint } = this.props;
+    const { hint } = this.props;
 
     return (
       <div>
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        {recipeHint ? (
+        {hint ? (
           <RecipeLink
             invitation={messages.recipe}
-            recipeId={recipeHint.id}
-            recipeName={recipeHint.name}
+            recipeId={hint.id}
+            recipeName={hint.name}
           />
         ) : null}
       </div>
@@ -34,7 +34,7 @@ class HomePage extends Component {
 
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  recipeHint: PropTypes.shape({
+  hint: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
   }),

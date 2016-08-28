@@ -9,6 +9,7 @@ import languageProviderReducer from '../containers/LanguageProvider/reducer';
 import update from 'react-addons-update';
 
 import device from './device';
+import recipe from './recipe';
 import server from './server';
 
 /*
@@ -47,6 +48,7 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     route,
     device,
+    recipe,
     server,
     language: languageProviderReducer,
     ...asyncReducers,

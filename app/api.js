@@ -1,3 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-export const fetchRandomRecipe = () => fetch('/api/recipe/random');
+const apiUrl = 'localhost:3000';
+export const getApiUrl = path => `http://${apiUrl}/api${path}`;
+
+export const fetchRandomRecipe = () => fetch(getApiUrl('/recipe/random'));

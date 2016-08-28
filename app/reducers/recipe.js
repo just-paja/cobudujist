@@ -3,11 +3,13 @@ import { combineReducers } from 'redux';
 import {
   RECIPE_HINT_LOADING,
   RECIPE_HINT_RECEIVED,
+  RECIPE_HINT_FAILED,
 } from '../constants/actions';
 
 const defaultState = {
   recipe: null,
   loading: false,
+  error: null,
 };
 
 const hintReducers = {
@@ -17,6 +19,10 @@ const hintReducers = {
   [RECIPE_HINT_RECEIVED]: (state, action) => update(state, {
     loading: { $set: false },
     recipe: { $set: action.recipe },
+  }),
+  [RECIPE_HINT_FAILED]: (state, action) => update(state, {
+    loading: { $set: false },
+    error: { $set: action.error },
   }),
 };
 

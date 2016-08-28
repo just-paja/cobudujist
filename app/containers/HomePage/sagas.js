@@ -13,8 +13,8 @@ export function* fetchRandomRecipe() {
       type: constants.RECIPE_HINT_RECEIVED,
       recipe,
     });
-  } catch (e) {
-    yield put({ type: constants.RECIPE_HINT_FAILED });
+  } catch (error) {
+    yield put({ type: constants.RECIPE_HINT_FAILED, error });
   }
 }
 

@@ -1,5 +1,5 @@
-import configureStore, { sagaMiddleware } from '../../app/store';
 import createRoutes from '../../app/routes';
+import configureStore, { sagaMiddleware } from '../../app/store';
 import Helmet from 'react-helmet';
 import Html from '../components/Html.react';
 import React from 'react';
@@ -67,6 +67,21 @@ const renderPage = (store, renderProps, req) => {
   return `<!DOCTYPE html>${staticHtml}`;
 };
 
+const loadAndRenderPage = ({
+  req,
+  store,
+  renderProps,
+}) => {
+  const rootTask = sagaMiddleware.run(HomePageSagas[0]);
+  renderPage(store, renderProps, req);
+  store.dispatch(END);
+  return rootTask.done.then(() => {
+    const html = renderPage(store, renderProps, req);
+    const status = renderProps.routes.some(route => route.path === '*') ? 404 : 200;
+    return { status, html };
+  });
+};
+
 export default function render(req, res, next) {
   const initialState = {
     device: {
@@ -89,17 +104,16 @@ export default function render(req, res, next) {
     } else if (redirectLocation) {
       res.redirect(301, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      const rootTask = sagaMiddleware.run(HomePageSagas[0]);
-      getAppHtml(store, renderProps);
-      store.dispatch(END);
-      rootTask.done.then(() => {
-        const html = renderPage(store, renderProps, req);
-        const status = renderProps.routes.some(route => route.path === '*') ? 404 : 200;
-        res
+      loadAndRenderPage({ req, store, renderProps })
+        .then(({ status, html }) => res
           .status(status)
           .header('Content-type', 'text/html; charset=utf-8')
-          .send(html);
-      });
+          .send(html))
+        .catch(renderError => {
+          res.status(500).send('Fatal error while rendering!');
+          // eslint-disable-next-line no-console
+          console.error(renderError);
+        });
     } else {
       res.status(404).send('Page not found');
     }

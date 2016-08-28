@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
 const selectRecipeHint = () => createSelector(
-  state => (state.home.recipeHint ? state.home.recipeHint.recipe : null),
-  recipeHint => ({ recipeHint }),
+  state => state.recipe,
+  recipe => ({ hint: recipe.hint.recipe }),
 );
 
 export {
