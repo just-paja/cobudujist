@@ -21,6 +21,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
+import sagas from './sagas';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -47,6 +48,8 @@ const history = syncHistoryWithStore(browserHistory, store, {
 import createRoutes from './routes';
 
 const render = (translatedMessages) => {
+  store.runSaga(sagas);
+
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={translatedMessages}>

@@ -8,20 +8,16 @@ import { IndexRoute, Route } from 'react-router';
 
 import App from './containers/App';
 
-import HomeSagas from './containers/HomePage/sagas';
 import HomePage from './containers/HomePage';
+import RecipePage from './containers/RecipePage';
 
 import NotFoundPage from './containers/NotFoundPage';
 
-const sagas = [HomeSagas];
-
-export default function createRoutes(store) {
-  sagas.forEach(list => list.map(store.runSaga));
-
+export default function createRoutes() {
   return (
     <Route component={App} path="/">
       <IndexRoute name="home" component={HomePage} />
-      <Route name="recipe" path="/recipe/:recipe" />
+      <Route name="recipe" path="/recipe/:recipe" component={RecipePage} />
       <Route name="notfound" path="*" component={NotFoundPage} />
     </Route>
   );

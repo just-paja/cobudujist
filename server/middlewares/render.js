@@ -7,7 +7,7 @@ import serialize from 'serialize-javascript';
 import useragent from 'useragent';
 
 import LanguageProvider from '../../app/containers/LanguageProvider';
-import HomePageSagas from '../../app/containers/HomePage/sagas';
+import sagas from '../../app/sagas';
 
 import { createMemoryHistory } from 'history';
 import { END } from 'redux-saga';
@@ -73,8 +73,8 @@ const loadAndRenderPage = ({
   store,
   renderProps,
 }) => {
-  const rootTask = sagaMiddleware.run(HomePageSagas[0]);
-  renderPage(store, renderProps, req);
+  const rootTask = sagaMiddleware.run(sagas);
+  getAppHtml(store, renderProps);
   store.dispatch(END);
   return rootTask.done.then(() => {
     const html = renderPage(store, renderProps, req);

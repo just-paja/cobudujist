@@ -6,7 +6,7 @@ import * as constants from '../../constants/actions';
 export function* fetchRandomRecipe() {
   yield put({ type: constants.RECIPE_HINT_LOADING });
   try {
-    const res = yield call(api.fetchRandomRecipe);
+    const res = yield call(api.fetchRecipeRandom);
     const recipe = yield res.json();
 
     yield put({

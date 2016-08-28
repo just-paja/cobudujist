@@ -1,43 +1,37 @@
 import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
-import RecipeLink from '../../components/RecipeLink';
-import messages from './messages';
 
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { selectRecipeHint } from './selectors';
+import { selectRecipeDetail } from './selectors';
 
-class HomePage extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: constants.HOME_PAGE_RENDERED });
+import RecipeDetail from '../../components/RecipeDetail';
+
+class RecipePage extends Component {
+  componentWillMount() {
+    this.props.dispatch({
+      type: constants.RECIPE_DETAIL_ENTERED,
+      recipe: this.props.params.recipe,
+    });
   }
 
   render() {
-    const { recipeHint } = this.props;
+    const { detail } = this.props;
 
     return (
       <div>
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-        {recipeHint ? (
-          <RecipeLink
-            invitation={messages.recipe}
-            recipeId={recipeHint.id}
-            recipeName={recipeHint.name}
-          />
-        ) : null}
+        {detail ? <RecipeDetail {...detail} /> : null}
       </div>
     );
   }
 }
 
-HomePage.propTypes = {
+RecipePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  recipeHint: PropTypes.shape({
+  detail: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
   }),
+  params: PropTypes.shape({ recipe: PropTypes.string }).isRequired,
 };
 
-export default connect(selectRecipeHint)(HomePage);
+export default connect(selectRecipeDetail)(RecipePage);
