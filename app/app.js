@@ -32,7 +32,8 @@ import 'sanitize.css/sanitize.css';
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
-const initialState = {};
+// eslint-disable-next-line no-underscore-dangle
+const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState, browserHistory);
 
 // Sync history and store, as the react-router-redux reducer
