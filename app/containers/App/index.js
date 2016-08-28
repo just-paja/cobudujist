@@ -12,6 +12,9 @@
  */
 
 import React from 'react';
+
+import Footer from '../../components/Footer';
+import messages from './messages';
 import styles from './styles.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -25,6 +28,10 @@ export default class App extends React.Component {
     return (
       <div className={styles.container}>
         {this.props.children}
+        <Footer
+          about={messages.about}
+          home={messages.home}
+        />
       </div>
     );
   }
