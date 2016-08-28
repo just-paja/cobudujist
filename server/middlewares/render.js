@@ -6,21 +6,22 @@ import React from 'react';
 import serialize from 'serialize-javascript';
 import useragent from 'useragent';
 
+import LanguageProvider from '../../app/containers/LanguageProvider';
 import HomePageSagas from '../../app/containers/HomePage/sagas';
 
 import { createMemoryHistory } from 'history';
 import { END } from 'redux-saga';
-import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
+import { translationMessages } from '../../app/i18n';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const getAppHtml = (store, renderProps) => renderToString(
   <Provider store={store}>
-    <IntlProvider locale="cs">
+    <LanguageProvider messages={translationMessages}>
       <RouterContext {...renderProps} />
-    </IntlProvider>
+    </LanguageProvider>
   </Provider>
 );
 
