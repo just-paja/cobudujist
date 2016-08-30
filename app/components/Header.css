@@ -1,9 +1,9 @@
-:local .brandHeader {
+.brandHeader {
   float: none;
   text-align: center;
 }
 
-:local .brand {
+.brand {
   display: inline-block;
   float: none;
   margin-left: 50px;
