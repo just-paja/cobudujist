@@ -24,10 +24,8 @@ const Html = ({
         {helmet.script.toComponent()}
         {linkStyles}
         <link rel="manifest" href="manifest.json" />
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-        />
+        <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/static/bootswatch/bootstrap.min.css" />
       </head>
       <body dangerouslySetInnerHTML={{ __html: bodyHtml }} />
     </html>

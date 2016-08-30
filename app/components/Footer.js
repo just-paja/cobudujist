@@ -1,28 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router';
+import NavigationMenu from './NavigationMenu';
 
-const Footer = ({ about, contact, home }) => (
+const Footer = () => (
   <div>
-    <Link to="/">
-      <FormattedMessage {...home} />
-    </Link>
-    {' | '}
-    <Link to="/o-projektu">
-      <FormattedMessage {...about} />
-    </Link>
-    {' | '}
-    <Link to="/kontakt">
-      <FormattedMessage {...contact} />
-    </Link>
+    <hr />
+    <NavigationMenu justified />
   </div>
 );
-
-Footer.propTypes = {
-  about: PropTypes.object.isRequired,
-  contact: PropTypes.object.isRequired,
-  home: PropTypes.object.isRequired,
-};
 
 export default Footer;

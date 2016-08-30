@@ -5,6 +5,7 @@ import device from 'express-device';
 import express from 'express';
 import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
+import staticFiles from './middlewares/staticFiles';
 
 import { connect, middleware, seed } from './middlewares/database';
 import { resolve } from 'path';
@@ -26,6 +27,7 @@ connect()
     .use(device.capture())
     .use(middleware())
     .use('/api', api)
+    .use('/static', staticFiles)
   )
   .then(() => {
     // In production we need to pass these values in instead of relying on webpack

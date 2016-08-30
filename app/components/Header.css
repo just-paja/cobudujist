@@ -1,0 +1,11 @@
+:local .brandHeader {
+  float: none;
+  text-align: center;
+}
+
+:local .brand {
+  display: inline-block;
+  float: none;
+  margin-left: 0;
+  vertical-align: top;
+}
