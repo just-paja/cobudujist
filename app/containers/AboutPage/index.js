@@ -3,6 +3,7 @@ import React from 'react';
 import messages from './messages';
 
 import { FormattedMessage } from 'react-intl';
+import { Well } from 'react-bootstrap';
 
 const AboutPage = () => (
   <div>
@@ -14,14 +15,14 @@ const AboutPage = () => (
     </h1>
     <p><FormattedMessage {...messages.intro} /></p>
 
-    <section>
+    <Well>
       <h2><FormattedMessage {...messages.targetHeading} /></h2>
       <p><FormattedMessage {...messages.target} /></p>
-    </section>
-    <section>
+    </Well>
+    <Well>
       <h2><FormattedMessage {...messages.additionsHeading} /></h2>
       <p><FormattedMessage {...messages.additions} /></p>
-    </section>
+    </Well>
   </div>
 );
 
