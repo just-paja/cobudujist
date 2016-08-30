@@ -10,6 +10,7 @@ import App from './containers/App';
 
 import HomePage from './containers/HomePage';
 import RecipePage from './containers/RecipePage';
+import AboutPage from './containers/AboutPage';
 
 import NotFoundPage from './containers/NotFoundPage';
 
@@ -18,6 +19,7 @@ export default function createRoutes() {
     <Route component={App} path="/">
       <IndexRoute name="home" component={HomePage} />
       <Route name="recipe" path="/recipe/:recipe" component={RecipePage} />
+      <Route name="about" path="/o-projektu" component={AboutPage} />
       <Route name="notfound" path="*" component={NotFoundPage} />
     </Route>
   );
