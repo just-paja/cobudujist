@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React from 'react';
 import messages from './messages';
 
@@ -5,17 +6,22 @@ import { FormattedMessage } from 'react-intl';
 
 const AboutPage = () => (
   <div>
+    <FormattedMessage {...messages.title}>
+      {message => <Helmet title={message} />}
+    </FormattedMessage>
     <h1>
-      <FormattedMessage {...messages.heading} />
+      <FormattedMessage {...messages.title} />
     </h1>
-    <div>
-      <h2><FormattedMessage {...messages.introHeading} /></h2>
-      <p><FormattedMessage {...messages.intro} /></p>
+    <p><FormattedMessage {...messages.intro} /></p>
+
+    <section>
       <h2><FormattedMessage {...messages.targetHeading} /></h2>
       <p><FormattedMessage {...messages.target} /></p>
+    </section>
+    <section>
       <h2><FormattedMessage {...messages.additionsHeading} /></h2>
       <p><FormattedMessage {...messages.additions} /></p>
-    </div>
+    </section>
   </div>
 );
 

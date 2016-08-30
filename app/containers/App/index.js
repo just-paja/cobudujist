@@ -30,6 +30,7 @@ export default class App extends React.Component {
         {this.props.children}
         <Footer
           about={messages.about}
+          contact={messages.contact}
           home={messages.home}
         />
       </div>

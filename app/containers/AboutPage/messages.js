@@ -1,12 +1,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  heading: {
-    id: 'app.about.heading',
-    defaultMessage: 'Co budu jíst?',
-  },
-  introHeading: {
-    id: 'app.about.target.heading',
+  title: {
+    id: 'app.about.target.title',
     defaultMessage: 'O projektu',
   },
   intro: {

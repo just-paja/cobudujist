@@ -8,9 +8,10 @@ import { IndexRoute, Route } from 'react-router';
 
 import App from './containers/App';
 
+import AboutPage from './containers/AboutPage';
+import ContactPage from './containers/ContactPage';
 import HomePage from './containers/HomePage';
 import RecipePage from './containers/RecipePage';
-import AboutPage from './containers/AboutPage';
 
 import NotFoundPage from './containers/NotFoundPage';
 
@@ -20,6 +21,7 @@ export default function createRoutes() {
       <IndexRoute name="home" component={HomePage} />
       <Route name="recipe" path="/recipe/:recipe" component={RecipePage} />
       <Route name="about" path="/o-projektu" component={AboutPage} />
+      <Route name="contact" path="/kontakt" component={ContactPage} />
       <Route name="notfound" path="*" component={NotFoundPage} />
     </Route>
   );
