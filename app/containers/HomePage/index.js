@@ -1,12 +1,15 @@
 import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
+
+import { Well } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 import RecipeHint from '../../components/RecipeHint';
 import RecipeLink from '../../components/RecipeLink';
 import messages from './messages';
 
-import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { selectRecipeHint } from './selectors';
+
 
 class HomePage extends Component {
   componentWillMount() {
@@ -18,21 +21,22 @@ class HomePage extends Component {
 
     return (
       <div>
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-        {hint ? (
-          <RecipeHint
-            loading={hintLoading}
-            onRefresh={() => dispatch({ type: constants.RECIPE_HINT_REFRESH })}
-          >
-            <RecipeLink
-              invitation={messages.recipe}
-              recipeId={hint.id}
-              recipeName={hint.name}
-            />
-          </RecipeHint>
-        ) : null}
+        <Well bsSize="large" className="text-center">
+          {hint ? (
+            <RecipeHint
+              loading={hintLoading}
+              onRefresh={() => dispatch({ type: constants.RECIPE_HINT_REFRESH })}
+            >
+              <h2>
+                <RecipeLink
+                  invitation={messages.recipe}
+                  recipeId={hint.id}
+                  recipeName={hint.name}
+                />
+              </h2>
+            </RecipeHint>
+          ) : null}
+        </Well>
       </div>
     );
   }
