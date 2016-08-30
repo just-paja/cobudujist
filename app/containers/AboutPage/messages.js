@@ -18,7 +18,7 @@ export default defineMessages({
   },
   targetHeading: {
     id: 'app.about.target.heading',
-    defaultMessage: 'Kam míříme?',
+    defaultMessage: 'Na co míříme?',
   },
   target: {
     id: 'app.about.target.text',
