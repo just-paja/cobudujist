@@ -5,11 +5,11 @@ import { Link } from 'react-router';
 
 const Footer = ({ home, about }) => (
   <div>
-    <Link to="home">
+    <Link to="/">
       <FormattedMessage {...home} />
     </Link>
     {' | '}
-    <Link to="about">
+    <Link to="/o-projektu">
       <FormattedMessage {...about} />
     </Link>
   </div>
