@@ -1,5 +1,6 @@
 import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
+import RecipeHint from '../../components/RecipeHint';
 import RecipeLink from '../../components/RecipeLink';
 import messages from './messages';
 
@@ -13,7 +14,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { hint } = this.props;
+    const { dispatch, hint, hintLoading } = this.props;
 
     return (
       <div>
@@ -21,11 +22,16 @@ class HomePage extends Component {
           <FormattedMessage {...messages.header} />
         </h1>
         {hint ? (
-          <RecipeLink
-            invitation={messages.recipe}
-            recipeId={hint.id}
-            recipeName={hint.name}
-          />
+          <RecipeHint
+            loading={hintLoading}
+            onRefresh={() => dispatch({ type: constants.RECIPE_HINT_REFRESH })}
+          >
+            <RecipeLink
+              invitation={messages.recipe}
+              recipeId={hint.id}
+              recipeName={hint.name}
+            />
+          </RecipeHint>
         ) : null}
       </div>
     );
@@ -38,6 +44,7 @@ HomePage.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }),
+  hintLoading: PropTypes.bool.isRequired,
 };
 
 export default connect(selectRecipeHint)(HomePage);

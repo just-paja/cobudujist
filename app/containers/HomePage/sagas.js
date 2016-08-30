@@ -22,6 +22,11 @@ export function* fetchRandomRecipeOnPageLoad() {
   yield* takeLatest(constants.HOME_PAGE_RENDERED, fetchRandomRecipe);
 }
 
+export function* fetchRandomRecipeOnRefresh() {
+  yield* takeLatest(constants.RECIPE_HINT_REFRESH, fetchRandomRecipe);
+}
+
 export default [
   fetchRandomRecipeOnPageLoad,
+  fetchRandomRecipeOnRefresh,
 ];
