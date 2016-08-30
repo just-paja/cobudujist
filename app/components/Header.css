@@ -6,6 +6,6 @@
 :local .brand {
   display: inline-block;
   float: none;
-  margin-left: 0;
+  margin-left: 50px;
   vertical-align: top;
 }
