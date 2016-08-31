@@ -1,11 +1,11 @@
-import expect from 'expect';
+import { expect } from 'chai';
 import databaseInit from '../../middlewares/database';
 import { findRecipe } from '../../api/detail';
 
 describe('detail getting', () => {
-  before(function beforeHook(next) {
+  before(function beforeHook() {
     this.db = databaseInit({ storage: 'detail.test.sqlite' });
-    this.db
+    return this.db
       .connect()
       .then(this.db.sync)
       .then(() => Promise.all([
@@ -15,6 +15,11 @@ describe('detail getting', () => {
           id: 1,
           name: 'Test Recipe',
           steps: 'Testing markdown steps',
+          notes: 'test notes',
+          createdAt: '2016-01-01T01:01:01.000Z',
+          updatedAt: '2016-01-01T01:01:01.000Z',
+          prepareTimeId: null,
+          prepareTime: null,
         }),
         this.db.models.Ingredient.upsert({
           id: 1,
@@ -22,19 +27,13 @@ describe('detail getting', () => {
           recipeId: 1,
           typeId: 1,
         }),
-      ]))
-      .then(() => next())
-      .catch(next);
+      ]));
   });
 
   it('should respond with correct recipe', function testDetail() {
-    findRecipe(this.db.models, 2)
+    return findRecipe(this.db.models, 1)
       .then(recipe => {
-        expect(recipe).to.equal({
-          id: 1,
-          name: 'Test Recipe',
-          steps: 'Testing markdown steps',
-        });
+        expect(recipe.id).to.equal(1);
       });
   });
 });

@@ -40,6 +40,8 @@ export default (passedConfig = {}) => {
     notes: { type: Sequelize.TEXT },
   });
 
+  const RecipeTags = db.define('recipeTags', {});
+
   const Ingredient = db.define('ingredient', {
     amount: { type: Sequelize.DECIMAL },
   });
@@ -55,12 +57,13 @@ export default (passedConfig = {}) => {
   FoodTagCategory.belongsToMany(FoodTag, { as: 'tags', through: 'CategoryTags' });
   Recipe.hasMany(Ingredient, { as: 'ingrediences' });
   Recipe.belongsTo(RecipeTime, { as: 'prepareTime' });
-  Recipe.belongsToMany(FoodTag, { as: 'tags', through: 'RecipeTags' });
+  Recipe.belongsToMany(FoodTag, { as: 'tags', through: RecipeTags });
   Ingredient.belongsTo(IngredientType, { as: 'type' });
   IngredientType.belongsTo(Unit, { as: 'unit' });
 
   const models = {
     Recipe,
+    RecipeTags,
     RecipeTime,
     FoodTag,
     FoodTagCategory,
