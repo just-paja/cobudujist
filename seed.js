@@ -95,6 +95,12 @@ opepříme a vše vmícháme k uvařené rýži. Podáváme se salátem.`,
         recipeId: 1,
         typeId: 1,
       },
+      {
+        id: 2,
+        amount: 1,
+        recipeId: 1,
+        typeId: 2,
+      },
     ],
   },
 ];

@@ -4,12 +4,15 @@ import React, { PropTypes } from 'react';
 import { Col, Image, Row, Well } from 'react-bootstrap';
 import { Link } from 'react-router';
 
-const RecipeDetail = ({ id, name, steps }) => (
+import RecipeIngredients from './RecipeIngredients';
+
+const RecipeDetail = ({ id, ingredients, name, steps }) => (
   <div>
     <h1><Link to={`/recipe/${id}`}>{name}</Link></h1>
     <Row>
       <Col sm={6}>
         <h2>Ingredience</h2>
+        <RecipeIngredients ingredients={ingredients} />
         <h2>Postup</h2>
         <Well>
           <Markdown source={steps} />
@@ -27,6 +30,7 @@ const RecipeDetail = ({ id, name, steps }) => (
 
 RecipeDetail.propTypes = {
   id: PropTypes.number.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
   name: PropTypes.string.isRequired,
   steps: PropTypes.string.isRequired,
 };

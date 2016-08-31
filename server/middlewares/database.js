@@ -55,7 +55,7 @@ export default (passedConfig = {}) => {
   });
 
   FoodTagCategory.belongsToMany(FoodTag, { as: 'tags', through: 'CategoryTags' });
-  Recipe.hasMany(Ingredient, { as: 'ingrediences' });
+  Recipe.hasMany(Ingredient, { as: 'ingredients' });
   Recipe.belongsTo(RecipeTime, { as: 'prepareTime' });
   Recipe.belongsToMany(FoodTag, { as: 'tags', through: RecipeTags });
   Ingredient.belongsTo(IngredientType, { as: 'type' });
