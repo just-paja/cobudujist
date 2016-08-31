@@ -1,6 +1,6 @@
-const express = require('express');
-const random = require('./random');
-const detail = require('./detail');
+import express from 'express';
+import random from './random';
+import detail from './detail';
 
 const app = express();
 

@@ -1,11 +1,13 @@
 const fail = require('./fail');
 const respond = require('./respond');
 
-module.exports = (req, res) => {
-  req.db.Recipe
-    .findOne({
-      where: { id: req.params.recipe },
-    })
+export const findRecipe = (db, id) =>
+  db.Recipe.findOne({
+    where: { id },
+    include: [{ all: true }],
+  });
+
+export default (req, res) =>
+  findRecipe(req.db, req.params.recipe)
     .then(recipe => respond(res, recipe))
     .catch(fail(req, res));
-};

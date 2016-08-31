@@ -19,6 +19,10 @@ const logger = {
     console.log(`${chalk.green('✓')} Database connected`);
   },
 
+  databaseSynchronized: () => {
+    console.log(`${chalk.green('✓')} Database synchronized `);
+  },
+
   databaseSeeded: () => {
     console.log(`${chalk.green('✓')} Database seeded `);
   },

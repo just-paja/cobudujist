@@ -1,9 +1,28 @@
-module.exports = [
+export default [
   {
-    model: 'Recipe',
+    model: 'Unit',
     records: [
-      { id: 1, name: 'test food' },
-      { id: 2, name: 'secondary test food' },
+      { id: 1, name: '' },
+      { id: 2, name: 'g' },
+      { id: 3, name: 'kg' },
+      { id: 4, name: 'ml' },
+      { id: 5, name: 'dl' },
+      { id: 6, name: 'cl' },
+      { id: 7, name: 'l' },
+      { id: 8, name: 'ks' },
+      { id: 9, name: 'Podle chuti' },
+      { id: 10, name: 'Špetka' },
+      { id: 11, name: 'Podle uvážení' },
+    ],
+  },
+  {
+    model: 'IngredientType',
+    records: [
+      { id: 1, name: 'Rýže', unitId: 2 },
+      { id: 2, name: 'Cibule', unitId: 1 },
+      { id: 3, name: 'Sůl', unitId: 9 },
+      { id: 4, name: 'Pepř', unitId: 10 },
+      { id: 5, name: 'Mražená kukuřice', unitId: 11 },
     ],
   },
   {
@@ -48,6 +67,33 @@ module.exports = [
         id: 4,
         name: 'salt-preference',
         tags: [14, 15],
+      },
+    ],
+  },
+  {
+    model: 'Recipe',
+    records: [
+      {
+        id: 1,
+        name: 'Letní rychlé rizoto',
+        steps: `
+1. Uvaříme rýži podle svého osvědčeného návodu. Cibulku
+pokrájíme nadrobno. Na rozehřátém oleji na pánvi orestujeme cibulku.
+2. Na cibulku vsypeme zmraženou kukuřici a okapané červené fazole a krátce podusíme.
+3. Masovou směs ochutíme špetkou uzené papriky, osolíme,
+opepříme a vše vmícháme k uvařené rýži. Podáváme se salátem.`,
+      },
+      { id: 2, name: 'secondary test food' },
+    ],
+  },
+  {
+    model: 'Ingredient',
+    records: [
+      {
+        id: 1,
+        amount: 400,
+        recipeId: 1,
+        typeId: 1,
       },
     ],
   },

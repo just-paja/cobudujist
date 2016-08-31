@@ -6,8 +6,8 @@ import express from 'express';
 import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
 import staticFiles from './middlewares/staticFiles';
+import databaseInit from './middlewares/database';
 
-import { connect, middleware, seed } from './middlewares/database';
 import { resolve } from 'path';
 
 const argv = require('minimist')(process.argv.slice(2));
@@ -15,17 +15,17 @@ const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 
 const app = express();
+const db = databaseInit();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
-
-connect()
-  .then(() => logger.databaseConnected())
-  .then(seed)
-  .then(() => logger.databaseSeeded())
+db.connect()
+  .then(logger.databaseConnected)
+  .then(db.sync)
+  .then(logger.databaseSynchronized)
+  .then(db.seed)
+  .then(logger.databaseSeeded)
   .then(() => app
     .use(device.capture())
-    .use(middleware())
+    .use(db.middleware())
     .use('/api', api)
     .use('/static', staticFiles)
   )

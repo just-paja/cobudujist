@@ -1,7 +1,8 @@
-const Sequelize = require('sequelize');
-const seedData = require('../../seed.js');
+import Sequelize from 'sequelize';
+import seedData from '../../seed.js';
+import update from 'react-addons-update';
 
-const config = {
+const defaultConfig = {
   charset: process.env.DB_PASS || 'utf8',
   database: process.env.DB_NAME || 'cobudujist',
   dialect: process.env.DB_DIALECT || 'sqlite',
@@ -12,118 +13,100 @@ const config = {
   logging: process.env.DB_LOGGING || false,
 };
 
-const db = new Sequelize(config.database, config.user, config.password, config);
 
-const FoodTag = db.define('foodTag', {
-  name: { type: Sequelize.STRING, unique: true },
-});
-
-const FoodTagCategory = db.define('foodTagCategory', {
-  name: { type: Sequelize.STRING },
-});
-
-const RecipeTime = db.define('recipeTime', {
-  name: { type: Sequelize.STRING },
-  duration: { type: Sequelize.INTEGER.UNSIGNED },
-});
-
-const Recipe = db.define('recipe', {
-  name: { type: Sequelize.STRING },
-  text: { type: Sequelize.TEXT },
-});
-
-const Ingredience = db.define('ingredience', {
-  name: { type: Sequelize.STRING },
-  amount: { type: Sequelize.DECIMAL },
-});
-
-const IngredienceType = db.define('ingredienceType', {
-  name: { type: Sequelize.STRING },
-});
-
-const Unit = db.define('unit', {
-  name: { type: Sequelize.STRING },
-});
-
-FoodTagCategory.belongsToMany(FoodTag, { as: 'tags', through: 'CategoryTags' });
-Recipe.hasMany(Ingredience, { as: 'ingrediences' });
-Recipe.belongsTo(RecipeTime, { as: 'prepareTime' });
-Recipe.belongsToMany(FoodTag, { as: 'tags', through: 'RecipeTags' });
-Ingredience.belongsTo(IngredienceType);
-IngredienceType.belongsTo(Unit);
-
-const models = {
-  Recipe,
-  RecipeTime,
-  FoodTag,
-  FoodTagCategory,
-  Unit,
-  Ingredience,
-  IngredienceType,
-};
-
-const sync = () => {
-  const promises = [];
-
-  for (const model of Object.keys(models)) {
-    if (models.hasOwnProperty(model)) {
-      promises.push(models[model].sync());
-    }
-  }
-
-  Promise
-    .all(promises)
-    .catch(err => {
-      process.stdout.write('Could not sync the database scheme\n');
-      // eslint-disable-next-line no-console
-      console.error(err);
-      process.exit(2);
-    });
-};
-
-const seed = () => {
-  const promises = [];
-
-  for (const table of seedData) {
-    for (const record of table.records) {
-      promises.push(models[table.model].upsert(record));
-    }
-  }
-
-  return Promise
-    .all(promises)
-    .catch(err => {
-      process.stdout.write('Could not seed initial data into the database\n');
-      // eslint-disable-next-line no-console
-      console.error(err);
-      process.exit(3);
-    });
-};
-
-const connect = () => db
-  .authenticate()
-  .catch(err => {
-    process.stdout.write('Could not connect to database\n');
-    // eslint-disable-next-line no-console
-    console.error(err);
-    process.exit(1);
+export default (passedConfig = {}) => {
+  const config = update(defaultConfig, {
+    $merge: passedConfig,
   });
 
-const prepare = () => connect()
-  .then(sync)
-  .then(seed)
-  .catch(err => {
-    process.stdout.write('Failed to prepare database\n');
-    // eslint-disable-next-line no-console
-    console.error(err);
-    process.exit(4);
-  })
-  .then(() => ({ db, models }));
+  const db = new Sequelize(config.database, config.user, config.password, config);
 
-const middleware = () => (req, res, next) => {
-  // eslint-disable-next-line no-param-reassign
-  req.db = models;
-  next();
+  const FoodTag = db.define('foodTag', {
+    name: { type: Sequelize.STRING, unique: true },
+  });
+
+  const FoodTagCategory = db.define('foodTagCategory', {
+    name: { type: Sequelize.STRING },
+  });
+
+  const RecipeTime = db.define('recipeTime', {
+    name: { type: Sequelize.STRING },
+    duration: { type: Sequelize.INTEGER.UNSIGNED },
+  });
+
+  const Recipe = db.define('recipe', {
+    name: { type: Sequelize.STRING },
+    steps: { type: Sequelize.TEXT },
+    notes: { type: Sequelize.TEXT },
+  });
+
+  const Ingredient = db.define('ingredient', {
+    amount: { type: Sequelize.DECIMAL },
+  });
+
+  const IngredientType = db.define('ingredientType', {
+    name: { type: Sequelize.STRING },
+  });
+
+  const Unit = db.define('unit', {
+    name: { type: Sequelize.STRING },
+  });
+
+  FoodTagCategory.belongsToMany(FoodTag, { as: 'tags', through: 'CategoryTags' });
+  Recipe.hasMany(Ingredient, { as: 'ingrediences' });
+  Recipe.belongsTo(RecipeTime, { as: 'prepareTime' });
+  Recipe.belongsToMany(FoodTag, { as: 'tags', through: 'RecipeTags' });
+  Ingredient.belongsTo(IngredientType, { as: 'type' });
+  IngredientType.belongsTo(Unit, { as: 'unit' });
+
+  const models = {
+    Recipe,
+    RecipeTime,
+    FoodTag,
+    FoodTagCategory,
+    Unit,
+    Ingredient,
+    IngredientType,
+  };
+
+  const sync = () => {
+    const promises = [];
+
+    for (const model of Object.keys(models)) {
+      if (models.hasOwnProperty(model)) {
+        promises.push(models[model].sync());
+      }
+    }
+
+    return Promise.all(promises);
+  };
+
+  const seed = () => {
+    const promises = [];
+
+    for (const table of seedData) {
+      for (const record of table.records) {
+        promises.push(models[table.model].upsert(record));
+      }
+    }
+
+    return Promise
+      .all(promises)
+      .catch(err => {
+        process.stdout.write('Could not seed initial data into the database\n');
+        // eslint-disable-next-line no-console
+        console.error(err);
+        process.exit(3);
+      });
+  };
+
+  const connect = () => db.authenticate();
+
+  const middleware = () => (req, res, next) => {
+    // eslint-disable-next-line no-param-reassign
+    req.db = models;
+    next();
+  };
+
+  return { connect, middleware, seed, sync, models };
 };
-
-module.exports = { middleware, prepare, connect, seed };

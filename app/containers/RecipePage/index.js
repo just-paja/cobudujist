@@ -30,6 +30,7 @@ RecipePage.propTypes = {
   detail: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
+    steps: PropTypes.string,
   }),
   params: PropTypes.shape({ recipe: PropTypes.string }).isRequired,
 };

@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const fail = require('./fail');
 const respond = require('./respond');
 
-module.exports = (req, res) => {
+export default (req, res) => {
   req.db.Recipe
     .find({
       limit: 1,
