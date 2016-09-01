@@ -36,6 +36,8 @@ export default (passedConfig = {}) => {
 
   const Recipe = db.define('recipe', {
     name: { type: Sequelize.STRING },
+    duration: { type: Sequelize.INTEGER },
+    portions: { type: Sequelize.INTEGER },
     steps: { type: Sequelize.TEXT },
     notes: { type: Sequelize.TEXT },
   });
