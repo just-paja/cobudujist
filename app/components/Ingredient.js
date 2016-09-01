@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react';
 
-import { Col, Row } from 'react-bootstrap';
+import styles from './Ingredient.css';
 
-const Ingredient = ({ amount, id }) => (
-  <Row>
-    <Col xs={3}>{amount}</Col>
-    <Col xs={9}>{id}</Col>
-  </Row>
+const Ingredient = ({ amount, ingredientType, unit }) => (
+  <div>
+    <span className={styles.amount}>{amount} {unit.name}</span>
+    {' '}
+    <span className={styles.ingredient}>{ingredientType.name}</span>
+  </div>
 );
 
 Ingredient.propTypes = {
   amount: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
+  ingredientType: PropTypes.object.isRequired,
+  unit: PropTypes.object.isRequired,
 };
 
 export default Ingredient;
