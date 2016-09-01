@@ -4,7 +4,7 @@ import { findRecipe } from '../../api/detail';
 
 describe('detail getting', () => {
   before(function beforeHook() {
-    this.db = databaseInit({ storage: 'detail.test.sqlite' });
+    this.db = databaseInit({ storage: ':memory:' });
     return this.db
       .connect()
       .then(this.db.sync)
@@ -20,12 +20,9 @@ describe('detail getting', () => {
           updatedAt: '2016-01-01T01:01:01.000Z',
           prepareTimeId: null,
           prepareTime: null,
-        }),
-        this.db.models.Ingredient.upsert({
-          id: 1,
-          amount: 400,
-          recipeId: 1,
-          typeId: 1,
+          ingredients: [
+            { id: 1, amount: 400, ingredientTypeId: 1, unitTypeId: 1 },
+          ],
         }),
       ]));
   });

@@ -55,11 +55,14 @@ export default (passedConfig = {}) => {
   });
 
   FoodTagCategory.belongsToMany(FoodTag, { as: 'tags', through: 'CategoryTags' });
-  Recipe.hasMany(Ingredient, { as: 'ingredients' });
+  Recipe.hasMany(Ingredient);
   Recipe.belongsTo(RecipeTime, { as: 'prepareTime' });
   Recipe.belongsToMany(FoodTag, { as: 'tags', through: RecipeTags });
-  Ingredient.belongsTo(IngredientType, { as: 'type' });
-  IngredientType.belongsTo(Unit, { as: 'unit' });
+  IngredientType.hasMany(Ingredient);
+  Unit.hasMany(Ingredient);
+  Ingredient.belongsTo(Recipe);
+  Ingredient.belongsTo(IngredientType);
+  Ingredient.belongsTo(Unit);
 
   const models = {
     Recipe,
