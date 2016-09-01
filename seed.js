@@ -76,6 +76,8 @@ export default [
       {
         id: 1,
         name: 'Letní rychlé rizoto',
+        duration: 30,
+        portions: 4,
         steps: `
 1. Uvaříme rýži podle svého osvědčeného návodu. Cibulku
 pokrájíme nadrobno. Na rozehřátém oleji na pánvi orestujeme cibulku.
