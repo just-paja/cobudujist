@@ -1,24 +1,21 @@
 import React, { PropTypes } from 'react';
 
-import { Well } from 'react-bootstrap';
-
 import Ingredient from './Ingredient';
-import styles from './RecipeIngredients.css';
+import WellList from './WellList';
 
 const RecipeIngredients = ({ ingredients }) => (
-  <Well>
-    <ul className={styles.ingredientList}>
-      {ingredients.map(ingredient => (
-        <li key={ingredient.id}>
-          <Ingredient {...ingredient} />
-        </li>
-      ))}
-    </ul>
-  </Well>
+  <WellList>
+    {ingredients.map(ingredient => (
+      <li key={ingredient.id}>
+        <Ingredient {...ingredient} />
+      </li>
+    ))}
+  </WellList>
 );
 
 RecipeIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  portions: PropTypes.number.isRequired,
 };
 
 export default RecipeIngredients;

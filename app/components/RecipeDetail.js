@@ -1,24 +1,30 @@
 import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
 
-import { Col, Image, Row, Well } from 'react-bootstrap';
+import { Col, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 
+import RecipeDuration from './RecipeDuration';
+import RecipePortions from './RecipePortions';
 import RecipeIngredients from './RecipeIngredients';
+import WellList from './WellList';
 
-const RecipeDetail = ({ id, ingredients, name, steps }) => (
+const RecipeDetail = ({ duration, id, ingredients, name, portions, steps }) => (
   <div>
     <h1><Link to={`/recipe/${id}`}>{name}</Link></h1>
     <Row>
-      <Col sm={6}>
+      <Col lg={8} sm={6}>
         <h2>Ingredience</h2>
         <RecipeIngredients ingredients={ingredients} />
+        <h2>Měli byste vědět</h2>
+        <WellList>
+          <li><RecipeDuration duration={duration} /></li>
+          <li><RecipePortions portions={portions} /></li>
+        </WellList>
         <h2>Postup</h2>
-        <Well>
-          <Markdown source={steps} />
-        </Well>
+        <Markdown source={steps} />
       </Col>
-      <Col sm={6}>
+      <Col lg={4} sm={6}>
         <Image
           src="https://www.toprecepty.cz/fotky/recepty/0081/letni-rychle-rizoto-172738-1920-1080.jpg"
           thumbnail
@@ -30,7 +36,9 @@ const RecipeDetail = ({ id, ingredients, name, steps }) => (
 
 RecipeDetail.propTypes = {
   id: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  portions: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   steps: PropTypes.string.isRequired,
 };
