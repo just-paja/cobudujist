@@ -1,12 +1,13 @@
+import classnames from 'classnames';
 import React, { PropTypes } from 'react';
 
 import styles from './Ingredient.css';
 
 const Ingredient = ({ amount, ingredientType, unit }) => (
   <div>
-    <span className={styles.amount}>{amount} {unit.name}</span>
-    {' '}
     <span className={styles.ingredient}>{ingredientType.name}</span>
+    {' '}
+    <span className={classnames(styles.amount, 'pull-right')}>{amount} {unit.name}</span>
   </div>
 );
 
