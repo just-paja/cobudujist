@@ -7,11 +7,15 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   header: {
-    id: 'app.components.HomePage.header',
+    id: 'app.home.header',
     defaultMessage: 'Co budu jíst?',
   },
   recipe: {
-    id: 'app.components.HomePage.suggestion',
+    id: 'app.home.suggestion',
     defaultMessage: 'Dej si',
+  },
+  quickChoice: {
+    id: 'app.home.quick',
+    defaultMessage: 'Rychlý výběr',
   },
 });

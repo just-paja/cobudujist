@@ -1,8 +1,9 @@
 import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
 
-import { Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+import { Well } from 'react-bootstrap';
 
 import RecipeHint from '../../components/RecipeHint';
 import RecipeLink from '../../components/RecipeLink';
@@ -21,6 +22,7 @@ class HomePage extends Component {
 
     return (
       <div>
+        <h1><FormattedMessage {...messages.quickChoice} /></h1>
         <Well bsSize="large" className="text-center">
           {hint ? (
             <RecipeHint
