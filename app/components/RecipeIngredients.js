@@ -15,7 +15,6 @@ const RecipeIngredients = ({ ingredients }) => (
 
 RecipeIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
-  portions: PropTypes.number.isRequired,
 };
 
 export default RecipeIngredients;
