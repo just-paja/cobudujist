@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import Markdown from 'react-markdown';
 import React, { PropTypes } from 'react';
 
@@ -11,6 +12,7 @@ import WellList from './WellList';
 
 const RecipeDetail = ({ duration, id, ingredients, name, portions, steps }) => (
   <div>
+    <Helmet title={name} />
     <h1><Link to={`/recipe/${id}`}>{name}</Link></h1>
     <Row>
       <Col lg={8} sm={6}>
