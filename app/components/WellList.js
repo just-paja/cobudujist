@@ -13,7 +13,7 @@ const WellList = ({ children }) => (
 );
 
 WellList.propTypes = {
-  children: PropTypes.oneOf([
+  children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
