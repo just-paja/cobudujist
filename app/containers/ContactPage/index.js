@@ -9,6 +9,13 @@ const ContactPage = () => (
     <FormattedMessage {...messages.title}>
       {message => <Helmet title={message} />}
     </FormattedMessage>
+    <h1>
+      <FormattedMessage {...messages.title} />
+    </h1>
+
+    <p>
+      <FormattedMessage {...messages.perex} />
+    </p>
   </div>
 );
 
