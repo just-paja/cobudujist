@@ -6,6 +6,7 @@ import detail from './detail';
 
 const app = express();
 
+app.use('/admin/user', admin('User'));
 app.use('/admin/recipe', admin('Recipe'));
 
 app.get('/recipe/random', random);

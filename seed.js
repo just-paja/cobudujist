@@ -1,5 +1,17 @@
 export default [
   {
+    model: 'User',
+    records: [
+      {
+        id: 1,
+        login: 'root',
+        // TODO: Hash the password in database
+        password: 'root',
+        disabled: false,
+      },
+    ],
+  },
+  {
     model: 'Unit',
     records: [
       { id: 1, name: 'ks' },

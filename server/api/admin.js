@@ -3,6 +3,24 @@ import express from 'express';
 import fail from './fail';
 import respond from './respond';
 
+export const loginFirst = (req, res, next) => {
+  const { login, password } = req.headers;
+
+  req.db.User.findOne({
+    // TODO: Hash password in database
+    where: { login, password, disabled: false },
+  })
+    .then(user => {
+      if (user) {
+        // eslint-disable-next-line no-param-reassign
+        req.user = user;
+        next();
+      } else {
+        res.status(401).send('Unauthorized');
+      }
+    });
+};
+
 export const notFound = (res) => res.status(404);
 
 export const getItem = (model, id) =>
@@ -27,6 +45,8 @@ export const patchItem = (model, id, data) =>
 
 const admin = (model) => {
   const app = express();
+
+  app.use(loginFirst);
 
   app.post('/', (req, res) =>
     createItem(req.db[model], req.body)

@@ -21,6 +21,12 @@ export default (passedConfig = {}) => {
 
   const db = new Sequelize(config.database, config.user, config.password, config);
 
+  const User = db.define('admin', {
+    login: { type: Sequelize.STRING, unique: true },
+    password: { type: Sequelize.STRING },
+    disabled: { type: Sequelize.BOOLEAN },
+  });
+
   const FoodTag = db.define('foodTag', {
     name: { type: Sequelize.STRING, unique: true },
   });
@@ -74,6 +80,7 @@ export default (passedConfig = {}) => {
   Ingredient.belongsTo(Unit);
 
   const models = {
+    User,
     Recipe,
     RecipeImage,
     RecipeTags,
