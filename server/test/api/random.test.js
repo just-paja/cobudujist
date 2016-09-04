@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import databaseInit from '../../middlewares/database';
-import { findRecipe } from '../../api/detail';
+import { findRecipe } from '../../api/random';
 
-describe('detail getting', () => {
+describe('random recipe getting', () => {
   beforeEach(function beforeHook() {
     this.db = databaseInit({ storage: ':memory:' });
     return this.db
@@ -25,27 +25,13 @@ describe('detail getting', () => {
           ],
           visible: true,
         }),
-        this.db.models.Recipe.upsert({
-          id: 2,
-          name: 'Hidden Recipe',
-          createdAt: '2016-01-01T01:01:01.000Z',
-          updatedAt: '2016-01-01T01:01:01.000Z',
-          visible: false,
-        }),
       ]));
   });
 
   it('should respond with correct recipe', function testDetail() {
-    return findRecipe(this.db.models, 1)
+    return findRecipe(this.db.models)
       .then(recipe => {
         expect(recipe.id).to.equal(1);
-      });
-  });
-
-  it('should ignore hidden recipes', function testDetail() {
-    return findRecipe(this.db.models, 2)
-      .then(recipe => {
-        expect(recipe).to.equal(null);
       });
   });
 });

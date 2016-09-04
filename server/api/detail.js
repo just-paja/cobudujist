@@ -3,7 +3,7 @@ const respond = require('./respond');
 
 export const findRecipe = (db, id) =>
   db.Recipe.findOne({
-    where: { id },
+    where: { id, visible: true },
     include: [
       {
         as: 'ingredients',

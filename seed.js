@@ -84,8 +84,9 @@ pokrájíme nadrobno. Na rozehřátém oleji na pánvi orestujeme cibulku.
 2. Na cibulku vsypeme zmraženou kukuřici a okapané červené fazole a krátce podusíme.
 3. Masovou směs ochutíme špetkou uzené papriky, osolíme,
 opepříme a vše vmícháme k uvařené rýži. Podáváme se salátem.`,
+        visible: true,
       },
-      { id: 2, name: 'secondary test food' },
+      { id: 2, name: 'secondary test food', visible: false },
     ],
   },
   {

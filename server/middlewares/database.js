@@ -45,6 +45,7 @@ export default (passedConfig = {}) => {
     portions: { type: Sequelize.INTEGER },
     steps: { type: Sequelize.TEXT },
     notes: { type: Sequelize.TEXT },
+    visible: { type: Sequelize.BOOLEAN },
   });
 
   const RecipeTags = db.define('recipeTags', {});
