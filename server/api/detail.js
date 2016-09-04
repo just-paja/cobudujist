@@ -1,5 +1,5 @@
-const fail = require('./fail');
-const respond = require('./respond');
+import fail from './fail';
+import respond from './respond';
 
 export const findRecipe = (db, id) =>
   db.Recipe.findOne({

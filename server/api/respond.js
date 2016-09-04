@@ -1,4 +1,4 @@
-module.exports = (res, data) =>
+export default (res, data) =>
   res
     .status(200)
     .header('Content-type', 'application/json; charset=utf-8')

@@ -8,7 +8,7 @@ const defaultConfig = {
   dialect: process.env.DB_DIALECT || 'sqlite',
   host: process.env.DB_HOST || '127.0.0.1',
   password: process.env.DB_PASS || '',
-  storage: process.env.DB_STORAGE || 'database.sqlite',
+  storage: process.env.DB_STORAGE || ':memory:',
   user: process.env.DB_USER || '',
   logging: process.env.DB_LOGGING || false,
 };
@@ -75,6 +75,7 @@ export default (passedConfig = {}) => {
 
   const models = {
     Recipe,
+    RecipeImage,
     RecipeTags,
     RecipeTime,
     FoodTag,

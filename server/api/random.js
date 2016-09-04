@@ -1,6 +1,7 @@
-const Sequelize = require('sequelize');
-const fail = require('./fail');
-const respond = require('./respond');
+import Sequelize from 'sequelize';
+
+import fail from './fail';
+import respond from './respond';
 
 export const findRecipe = db => db.Recipe
   .findOne({

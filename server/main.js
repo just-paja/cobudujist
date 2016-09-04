@@ -3,6 +3,7 @@
 import api from './api';
 import device from 'express-device';
 import express from 'express';
+import bodyParser from 'body-parser';
 import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
 import staticFiles from './middlewares/staticFiles';
@@ -18,6 +19,8 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const app = express();
 const db = databaseInit();
 const storage = storageInit();
+
+app.use(bodyParser.json());
 
 db.connect()
   .then(logger.databaseConnected)
