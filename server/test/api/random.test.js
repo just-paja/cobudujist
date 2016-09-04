@@ -4,7 +4,7 @@ import { findRecipe } from '../../api/random';
 
 describe('random recipe getting', () => {
   beforeEach(function beforeHook() {
-    this.db = databaseInit({ storage: ':memory:' });
+    this.db = databaseInit({}, { storage: ':memory:' });
     return this.db
       .connect()
       .then(this.db.sync)

@@ -4,7 +4,7 @@ import { findRecipe } from '../../api/detail';
 
 describe('detail getting', () => {
   beforeEach(function beforeHook() {
-    this.db = databaseInit({ storage: ':memory:' });
+    this.db = databaseInit({}, { storage: ':memory:' });
     return this.db
       .connect()
       .then(this.db.sync)
