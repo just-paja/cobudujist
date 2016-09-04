@@ -34,6 +34,11 @@ export default (passedConfig = {}) => {
     duration: { type: Sequelize.INTEGER.UNSIGNED },
   });
 
+  const RecipeImage = db.define('recipeImage', {
+    filename: { type: Sequelize.STRING },
+    comment: { type: Sequelize.STRING },
+  });
+
   const Recipe = db.define('recipe', {
     name: { type: Sequelize.STRING },
     duration: { type: Sequelize.INTEGER },
@@ -56,10 +61,11 @@ export default (passedConfig = {}) => {
     name: { type: Sequelize.STRING },
   });
 
-  FoodTagCategory.belongsToMany(FoodTag, { as: 'tags', through: 'CategoryTags' });
+  FoodTagCategory.belongsToMany(FoodTag, { through: 'CategoryTags' });
   Recipe.hasMany(Ingredient);
-  Recipe.belongsTo(RecipeTime, { as: 'prepareTime' });
-  Recipe.belongsToMany(FoodTag, { as: 'tags', through: RecipeTags });
+  Recipe.hasMany(RecipeImage);
+  Recipe.belongsTo(RecipeTime);
+  Recipe.belongsToMany(FoodTag, { through: RecipeTags });
   IngredientType.hasMany(Ingredient);
   Unit.hasMany(Ingredient);
   Ingredient.belongsTo(Recipe);

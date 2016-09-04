@@ -6,6 +6,7 @@ import express from 'express';
 import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
 import staticFiles from './middlewares/staticFiles';
+import storageInit from './middlewares/storage';
 import databaseInit from './middlewares/database';
 
 import { resolve } from 'path';
@@ -16,6 +17,7 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 
 const app = express();
 const db = databaseInit();
+const storage = storageInit();
 
 db.connect()
   .then(logger.databaseConnected)
@@ -26,6 +28,7 @@ db.connect()
   .then(() => app
     .use(device.capture())
     .use(db.middleware())
+    .use(storage.middleware())
     .use('/api', api)
     .use('/static', staticFiles)
   )
