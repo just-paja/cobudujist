@@ -124,13 +124,26 @@
   "dllPlugin": {
     "path": "node_modules/react-boilerplate-dlls",
     "exclude": [
+      "body-parser",
+      "bootswatch",
       "chalk",
       "compression",
       "cross-env",
+      "css-modules-require-hook",
       "express",
+      "express-device",
+      "express-static",
+      "filestorage",
+      "font-awesome",
+      "react-fontawesome",
       "ip",
       "minimist",
-      "sanitize.css"
+      "mysql",
+      "rimraf",
+      "sanitize.css",
+      "serialize-javascript",
+      "sqlite3",
+      "sequelize"
     ],
     "include": [
       "core-js",
