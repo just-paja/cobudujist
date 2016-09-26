@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const { bool, object, string } = PropTypes;
+const { bool, object, shape, string } = PropTypes;
 
 const Html = ({
   appCssFilename,
@@ -27,7 +27,9 @@ const Html = ({
         <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/static/bootswatch/bootstrap.min.css" />
       </head>
+      {/* eslint-disable react/no-danger */}
       <body dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+      {/* eslint-enable react/no-danger */}
     </html>
   );
 };
@@ -35,7 +37,13 @@ const Html = ({
 Html.propTypes = {
   appCssFilename: string.isRequired,
   bodyHtml: string.isRequired,
-  helmet: object.isRequired,
+  helmet: shape({
+    base: object,
+    meta: object,
+    link: object,
+    script: object,
+    title: object,
+  }).isRequired,
   isProduction: bool.isRequired,
 };
 

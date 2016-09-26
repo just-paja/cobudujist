@@ -1,10 +1,10 @@
 /**
  * Test store addons
  */
-
-import expect from 'expect';
-import configureStore from '../store';
+import { expect } from 'chai';
 import { browserHistory } from 'react-router';
+
+import configureStore from '../store';
 
 describe('configureStore', () => {
   let store;
@@ -15,13 +15,13 @@ describe('configureStore', () => {
 
   describe('asyncReducers', () => {
     it('should contain an object for async reducers', () => {
-      expect(typeof store.asyncReducers).toEqual('object');
+      expect(typeof store.asyncReducers).to.equal('object');
     });
   });
 
   describe('runSaga', () => {
     it('should contain a hook for `sagaMiddleware.run`', () => {
-      expect(typeof store.runSaga).toEqual('function');
+      expect(typeof store.runSaga).to.equal('function');
     });
   });
 });

@@ -50,34 +50,6 @@
       "stage-0"
     ]
   },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "env": {
-      "browser": true,
-      "node": true,
-      "mocha": true,
-      "es6": true
-    },
-    "plugins": [
-      "react",
-      "jsx-a11y"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "settings": {
-      "import/resolver": {
-        "webpack": {
-          "config": "./internals/webpack/webpack.test.babel.js"
-        }
-      }
-    }
-  },
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
@@ -141,6 +113,7 @@
     "font-awesome": "4.6.3",
     "history": "4.2.0",
     "intl": "1.2.5",
+    "ip": "^1.1.3",
     "mysql": "2.11.1",
     "react": "15.3.2",
     "react-addons-update": "15.3.2",

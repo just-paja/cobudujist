@@ -14,7 +14,7 @@ const selectLocale = () => createSelector(
   languageState => languageState.locale
 );
 
-export {
+export default {
   selectLanguage,
   selectLocale,
 };

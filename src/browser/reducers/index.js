@@ -1,8 +1,8 @@
+import update from 'react-addons-update';
 import { combineReducers } from 'redux';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import languageProviderReducer from '../containers/LanguageProvider/reducer';
-import update from 'react-addons-update';
 
+import languageProviderReducer from '../containers/LanguageProvider/reducer';
 import device from './device';
 import recipe from './recipe';
 import server from './server';

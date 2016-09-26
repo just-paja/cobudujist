@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
-import seedData from '../seed.js';
 import update from 'react-addons-update';
+import seedData from '../seed';
 
 const defaultConfig = {
   charset: process.env.DB_PASS || 'utf8',
@@ -96,7 +96,7 @@ export default (passedConfig = {}) => {
     const promises = [];
 
     for (const model of Object.keys(models)) {
-      if (models.hasOwnProperty(model)) {
+      if (models.model) {
         promises.push(models[model].sync());
       }
     }

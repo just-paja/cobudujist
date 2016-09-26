@@ -1,20 +1,21 @@
 /* eslint consistent-return:0 */
 
-import api from './api';
 import device from 'express-device';
 import express from 'express';
 import bodyParser from 'body-parser';
+import minimist from 'minimist';
+
+import { resolve } from 'path';
+
+import api from './api';
 import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
 import staticFiles from './middlewares/staticFiles';
 import storageInit from './middlewares/storage';
 import databaseInit from './middlewares/database';
 
-import { resolve } from 'path';
 
-const argv = require('minimist')(process.argv.slice(2));
-const isDev = process.env.NODE_ENV !== 'production';
-
+const argv = minimist(process.argv.slice(2));
 const app = express();
 const db = databaseInit();
 const storage = storageInit();

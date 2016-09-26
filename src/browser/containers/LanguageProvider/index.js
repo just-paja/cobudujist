@@ -13,7 +13,7 @@ import { IntlProvider } from 'react-intl';
 import { selectLocale } from './selectors';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export class LanguageProvider extends React.Component {
+class LanguageProvider extends React.Component {
   render() {
     return (
       <IntlProvider

@@ -3,13 +3,15 @@ import express from 'express';
 import path from 'path';
 import compression from 'compression';
 import render from './render';
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+
+const pkg = require('../../../package.json');
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
+
   const compiler = webpack(webpackConfig);
   const middleware = webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -54,6 +56,7 @@ module.exports = (app, options) => {
     addProdMiddlewares(app, options);
   } else {
     const webpackConfig = require('../../../internals/webpack/webpack.dev.babel');
+
     addDevMiddlewares(app, webpackConfig);
   }
 

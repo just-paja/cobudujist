@@ -5,6 +5,6 @@ const selectRecipeDetail = () => createSelector(
   recipe => ({ detail: recipe.detail.recipe }),
 );
 
-export {
+export default {
   selectRecipeDetail,
 };

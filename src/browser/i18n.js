@@ -1,16 +1,9 @@
-/**
- * i18n.js
- *
- * This will setup the i18n language files and locale data for your app.
- *
- */
+import csLocaleData from 'react-intl/locale-data/cs';
 import { addLocaleData } from 'react-intl';
 
-import csLocaleData from 'react-intl/locale-data/cs';
+import csTranslationMessages from './translations/cs.json';
 
 export const appLocales = ['cs'];
-
-import csTranslationMessages from './translations/cs.json';
 
 addLocaleData(csLocaleData);
 

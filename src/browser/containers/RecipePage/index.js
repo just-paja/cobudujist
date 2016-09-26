@@ -1,10 +1,9 @@
-import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
-import { selectRecipeDetail } from './selectors';
 
 import RecipeDetail from '../../components/RecipeDetail';
+import * as constants from '../../constants/actions';
+import { selectRecipeDetail } from './selectors';
 
 class RecipePage extends Component {
   componentWillMount() {

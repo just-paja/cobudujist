@@ -1,6 +1,4 @@
-import * as constants from '../../constants/actions';
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { Well } from 'react-bootstrap';
@@ -10,6 +8,8 @@ import RecipeLink from '../../components/RecipeLink';
 import messages from './messages';
 
 import { selectRecipeHint } from './selectors';
+
+import * as constants from '../../constants/actions';
 
 
 class HomePage extends Component {

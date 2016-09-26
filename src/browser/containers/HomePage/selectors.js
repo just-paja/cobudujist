@@ -8,6 +8,6 @@ const selectRecipeHint = () => createSelector(
   }),
 );
 
-export {
+export default {
   selectRecipeHint,
 };
