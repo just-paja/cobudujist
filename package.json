@@ -142,7 +142,6 @@
     ],
     "include": [
       "core-js",
-      "lodash",
       "eventsource-polyfill"
     ]
   },
@@ -152,7 +151,6 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "bootswatch": "^3.3.7",
-    "chai": "^3.5.0",
     "chalk": "1.1.3",
     "classnames": "^2.2.5",
     "compression": "1.6.2",
@@ -180,8 +178,6 @@
     "react-router-redux": "4.0.5",
     "react-router-scroll": "0.2.1",
     "redux": "3.5.2",
-    "redux-immutable": "3.0.6",
-    "redux-logger": "^2.6.1",
     "redux-saga": "0.11.0",
     "reselect": "2.5.3",
     "rimraf": "^2.5.4",
@@ -247,6 +243,7 @@
     "postcss-reporter": "1.4.1",
     "pre-commit": "1.1.3",
     "psi": "2.0.4",
+    "redux-logger": "^2.6.1",
     "rimraf": "2.5.4",
     "shelljs": "0.7.3",
     "sinon": "2.0.0-pre",
