@@ -1,20 +1,20 @@
-import createRoutes from '../../app/routes';
-import configureStore, { sagaMiddleware } from '../../app/store';
+import createRoutes from '../../browser/routes';
+import configureStore, { sagaMiddleware } from '../../browser/store';
 import Helmet from 'react-helmet';
 import Html from '../components/Html.react';
 import React from 'react';
 import serialize from 'serialize-javascript';
 import useragent from 'useragent';
 
-import LanguageProvider from '../../app/containers/LanguageProvider';
-import sagas from '../../app/sagas';
+import LanguageProvider from '../../browser/containers/LanguageProvider';
+import sagas from '../../browser/sagas';
 
 import { createMemoryHistory } from 'history';
 import { END } from 'redux-saga';
 import { Provider } from 'react-redux';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { RouterContext, match } from 'react-router';
-import { translationMessages } from '../../app/i18n';
+import { translationMessages } from '../../browser/i18n';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const getAppHtml = (store, renderProps) => renderToString(

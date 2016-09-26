@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import seedData from '../../seed.js';
+import seedData from '../seed.js';
 import update from 'react-addons-update';
 
 const defaultConfig = {

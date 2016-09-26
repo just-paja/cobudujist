@@ -5,7 +5,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const logger = require('../../server/logger');
+const logger = require('../../src/server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
 
@@ -24,7 +24,7 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
     'webpack-hot-middleware/client',
-    path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
+    path.join(process.cwd(), 'src/browser/app.js'),
   ],
 
   // Don't use hashes in dev mode for better performance
@@ -92,15 +92,3 @@ function dependencyHandlers() {
     }),
   ];
 }
-
-/**
- * We dynamically generate the HTML content in development so that the different
- * DLL Javascript files are loaded in script tags and available to our application.
- */
-// function templateContent() {
-  // const dllNames = !dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(dllPlugin.dlls);
-  // eslint-disable-next-line max-len
-  // dllNames.forEach(dllName => body.append(`<script data-dll='true' src='/${dllName}.dll.js'></script>`));
-
-  // return doc.toString();
-// }

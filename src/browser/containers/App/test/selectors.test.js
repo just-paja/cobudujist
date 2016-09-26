@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import { selectLocationState } from 'containers/App/selectors';
+import { selectLocationState } from '../selectors';
 
 describe('selectLocationState', () => {
   it('should select the route as a plain JS object', () => {

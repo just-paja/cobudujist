@@ -5,7 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const modules = [
-  'app',
+  'src',
   'node_modules',
 ];
 
@@ -26,7 +26,7 @@ module.exports = {
     preLoaders: [
       { test: /\.js$/,
         loader: 'isparta',
-        include: path.resolve('app/'),
+        include: path.resolve('src/'),
       },
     ],
     loaders: [

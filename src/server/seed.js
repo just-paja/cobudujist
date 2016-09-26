@@ -98,7 +98,7 @@ pokrájíme nadrobno. Na rozehřátém oleji na pánvi orestujeme cibulku.
 opepříme a vše vmícháme k uvařené rýži. Podáváme se salátem.`,
         visible: true,
       },
-      { id: 2, name: 'secondary test food', visible: false },
+      { id: 2, name: 'secondary test food', visible: true },
     ],
   },
   {
