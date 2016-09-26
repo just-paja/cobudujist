@@ -35,16 +35,6 @@ module.exports = (options) => ({
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
     }, {
-      test: /\.(jpg|png|gif)$/,
-      loaders: [
-        'file-loader',
-        // eslint-disable-next-line max-len
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
-      ],
-    }, {
-      test: /\.html$/,
-      loader: 'html-loader',
-    }, {
       test: /\.json$/,
       loader: 'json-loader',
     }, {
