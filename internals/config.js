@@ -39,8 +39,6 @@ const ReactBoilerplate = {
         .filter((value, index, self) => self.indexOf(value) === index)
         .filter(value => exclude.indexOf(value) === -1);
 
-      console.log(includeDependencies);
-
       return {
         reactBoilerplateDeps: includeDependencies,
       };
