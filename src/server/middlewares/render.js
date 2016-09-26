@@ -110,7 +110,7 @@ export default function render(req, res, next) {
           .status(status)
           .header('Content-type', 'text/html; charset=utf-8')
           .send(html))
-        .catch(renderError => {
+        .catch((renderError) => {
           res.status(500).send('Fatal error while rendering!');
           // eslint-disable-next-line no-console
           console.error(renderError);

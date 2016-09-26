@@ -37,14 +37,14 @@ describe('API detail', () => {
 
   it('should respond with correct recipe', function testDetail() {
     return findRecipe(this.db.models, 1)
-      .then(recipe => {
+      .then((recipe) => {
         expect(recipe.id).to.equal(1);
       });
   });
 
   it('should ignore hidden recipes', function testDetail() {
     return findRecipe(this.db.models, 2)
-      .then(recipe => {
+      .then((recipe) => {
         expect(recipe).to.equal(null);
       });
   });

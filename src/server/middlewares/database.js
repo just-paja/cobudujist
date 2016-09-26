@@ -115,7 +115,7 @@ export default (passedConfig = {}) => {
 
     return Promise
       .all(promises)
-      .catch(err => {
+      .catch((err) => {
         process.stdout.write('Could not seed initial data into the database\n');
         // eslint-disable-next-line no-console
         console.error(err);

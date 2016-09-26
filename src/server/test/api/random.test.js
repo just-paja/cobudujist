@@ -30,7 +30,7 @@ describe('API recipe', () => {
 
   it('should respond with correct recipe', function testDetail() {
     return findRecipe(this.db.models)
-      .then(recipe => {
+      .then((recipe) => {
         expect(recipe.id).to.equal(1);
       });
   });

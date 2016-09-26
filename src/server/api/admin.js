@@ -10,7 +10,7 @@ export const loginFirst = (req, res, next) => {
     // TODO: Hash password in database
     where: { login, password, disabled: false },
   })
-    .then(user => {
+    .then((user) => {
       if (user) {
         // eslint-disable-next-line no-param-reassign
         req.user = user;
@@ -21,11 +21,11 @@ export const loginFirst = (req, res, next) => {
     });
 };
 
-export const notFound = (res) => res.status(404);
+export const notFound = res => res.status(404);
 
 export const getItem = (model, id) =>
   model.findOne({ where: { id } })
-    .then(item => {
+    .then((item) => {
       if (!item) {
         throw new Error('item-not-found');
       }

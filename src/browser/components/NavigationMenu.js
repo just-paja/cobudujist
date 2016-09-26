@@ -19,7 +19,7 @@ export const messages = defineMessages({
   },
 });
 
-const NavigationMenu = (props) => (
+const NavigationMenu = props => (
   <Nav {...props}>
     <LinkContainer onlyActiveOnIndex to="/" >
       <NavItem>
