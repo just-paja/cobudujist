@@ -28,6 +28,11 @@ module.exports = {
     path: outputPath,
     library: '[name]',
   },
+  module: {
+    loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
+    ],
+  },
   plugins: [
     new webpack.DllPlugin({
       name: '[name]',
