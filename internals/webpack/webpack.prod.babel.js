@@ -1,9 +1,7 @@
 // Important modules this config uses
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 
 // PostCSS plugins
 const cssnext = require('postcss-cssnext');
@@ -12,9 +10,9 @@ const postcssReporter = require('postcss-reporter');
 
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
-  entry: [
-    path.join(process.cwd(), 'app/app.js'),
-  ],
+  entry: {
+    app: path.join(process.cwd(), 'app/app.js'),
+  },
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
@@ -28,6 +26,8 @@ module.exports = require('./webpack.base.babel')({
     'style-loader',
     'css-loader?modules&importLoaders=1!postcss-loader'
   ),
+
+  stats: true,
 
   // In production, we minify our CSS with cssnano
   postcssPlugins: [
@@ -61,50 +61,5 @@ module.exports = require('./webpack.base.babel')({
       },
     }),
 
-    // Minify and optimize the index.html
-    new HtmlWebpackPlugin({
-      template: 'app/index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-      inject: true,
-    }),
-
-    // Extract the CSS into a seperate file
-    new ExtractTextPlugin('[name].[contenthash].css'),
-
-    // Put it in the end to capture all the HtmlWebpackPlugin's
-    // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
-    new OfflinePlugin({
-      relativePaths: false,
-      publicPath: '/',
-
-      // No need to cache .htaccess. See http://mxs.is/googmp,
-      // this is applied before any match in `caches` section
-      excludes: ['.htaccess'],
-
-      caches: {
-        main: [':rest:'],
-
-        // All chunks marked as `additional`, loaded after main section
-        // and do not prevent SW to install. Change to `optional` if
-        // do not want them to be preloaded at all (cached only when first loaded)
-        additional: ['*.chunk.js'],
-      },
-
-      // Removes warning for about `additional` section usage
-      safeToUseOptionalCaches: true,
-
-      AppCache: false,
-    }),
   ],
 });
