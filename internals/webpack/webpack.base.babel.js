@@ -84,6 +84,6 @@ module.exports = (options) => ({
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  stats: false, // Don't show stats in the console
+  stats: !!options.stats, // Don't show stats in the console
   progress: true,
 });
