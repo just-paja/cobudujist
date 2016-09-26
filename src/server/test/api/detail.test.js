@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import databaseInit from '../../middlewares/database';
 import { findRecipe } from '../../api/detail';
 
-describe('detail getting', () => {
+describe('API detail', () => {
   beforeEach(function beforeHook() {
     this.db = databaseInit({}, { storage: ':memory:' });
     return this.db
