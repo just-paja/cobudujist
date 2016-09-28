@@ -2,11 +2,12 @@
  * DEVELOPMENT WEBPACK CONFIGURATION
  */
 
-const path = require('path');
-const fs = require('fs');
-const webpack = require('webpack');
-const logger = require('../../src/server/logger');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+import path from 'path';
+import fs from 'fs';
+import webpack from 'webpack';
+import logger from '../../src/server/logger';
+import pkg from '../../package.json';
+
 const dllPlugin = pkg.dllPlugin;
 
 // PostCSS plugins
@@ -88,7 +89,8 @@ function dependencyHandlers() {
   return [
     new webpack.DllReferencePlugin({
       context: process.cwd(),
-      manifest: require(manifestPath), // eslint-disable-line global-require
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      manifest: require(manifestPath),
     }),
   ];
 }

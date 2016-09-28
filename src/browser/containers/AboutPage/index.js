@@ -1,9 +1,10 @@
 import Helmet from 'react-helmet';
 import React from 'react';
-import messages from './messages';
 
 import { FormattedMessage } from 'react-intl';
 import { Well } from 'react-bootstrap';
+
+import messages from './messages';
 
 const AboutPage = () => (
   <div>

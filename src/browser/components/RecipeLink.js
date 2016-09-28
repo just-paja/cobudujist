@@ -14,7 +14,7 @@ const RecipeLink = ({ invitation, recipeName, recipeId }) => (
 RecipeLink.propTypes = {
   recipeId: PropTypes.number.isRequired,
   recipeName: PropTypes.string.isRequired,
-  invitation: PropTypes.object.isRequired,
+  invitation: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default RecipeLink;

@@ -8,10 +8,11 @@
  * the webpack process.
  */
 
-const { join } = require('path');
-const webpack = require('webpack');
-const pkg = require(join(process.cwd(), 'package.json'));
-const dllPlugin = require('../config').dllPlugin;
+import webpack from 'webpack';
+import { join } from 'path';
+
+import pkg from '../../package.json';
+import { dllPlugin } from '../config';
 
 if (!pkg.dllPlugin) { process.exit(0); }
 

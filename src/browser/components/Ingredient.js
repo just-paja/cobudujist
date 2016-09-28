@@ -13,9 +13,12 @@ const Ingredient = ({ amount, ingredientType, unit }) => (
 
 Ingredient.propTypes = {
   amount: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
-  ingredientType: PropTypes.object.isRequired,
-  unit: PropTypes.object.isRequired,
+  ingredientType: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
+  unit: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default Ingredient;

@@ -6,7 +6,7 @@
  * IntlProvider component and i18n messages (loaded from `app/translations`)
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
@@ -28,9 +28,9 @@ class LanguageProvider extends React.Component {
 }
 
 LanguageProvider.propTypes = {
-  locale: React.PropTypes.string,
-  messages: React.PropTypes.object,
-  children: React.PropTypes.element.isRequired,
+  locale: PropTypes.string,
+  messages: PropTypes.objectOf(PropTypes.string),
+  children: PropTypes.element.isRequired,
 };
 
 
