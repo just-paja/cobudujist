@@ -3,7 +3,7 @@ import React from 'react';
 import serialize from 'serialize-javascript';
 import useragent from 'useragent';
 
-import { createMemoryHistory } from 'history';
+import { createLocation, createMemoryHistory } from 'history';
 import { END } from 'redux-saga';
 import { Provider } from 'react-redux';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
@@ -96,7 +96,7 @@ export default function render(req, res, next) {
 
   const history = createMemoryHistory();
   const store = configureStore(initialState, history);
-  const location = history.createLocation(req.url);
+  const location = createLocation(req.url);
   const routes = createRoutes(store);
 
   match({ routes, location }, async (error, redirectLocation, renderProps) => {

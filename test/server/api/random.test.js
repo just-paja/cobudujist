@@ -9,9 +9,9 @@ describe('API recipe', () => {
       .authenticate()
       .then(this.db.sync.bind(this.db))
       .then(() => Promise.all([
-        this.db.models.Unit.upsert({ id: 1, name: 'g' }),
-        this.db.models.IngredientType.upsert({ id: 1, name: 'Rýže', unitId: 1 }),
-        this.db.models.Recipe.upsert({
+        this.db.models.unit.upsert({ id: 1, name: 'g' }),
+        this.db.models.ingredientType.upsert({ id: 1, name: 'Rýže', unitId: 1 }),
+        this.db.models.recipe.upsert({
           id: 1,
           name: 'Test Recipe',
           steps: 'Testing markdown steps',
@@ -29,7 +29,7 @@ describe('API recipe', () => {
   });
 
   it('should respond with correct recipe', function testDetail() {
-    return findRecipe(this.db.models)
+    return findRecipe(this.db)
       .then((recipe) => {
         expect(recipe.id).to.equal(1);
       });

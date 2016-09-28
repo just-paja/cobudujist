@@ -29,7 +29,7 @@ class LanguageProvider extends React.Component {
 
 LanguageProvider.propTypes = {
   locale: PropTypes.string,
-  messages: PropTypes.objectOf(PropTypes.string),
+  messages: PropTypes.objectOf(PropTypes.object),
   children: PropTypes.element.isRequired,
 };
 

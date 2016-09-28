@@ -9,7 +9,7 @@ import styles from './Header.css';
 
 const Header = () => (
   <Navbar fixedTop>
-    <Navbar.Header className={styles.brandHeader} expanded={false}>
+    <Navbar.Header className={styles.brandHeader}>
       <Navbar.Brand className={styles.brand}>
         <Link to="/">Co budu jíst?</Link>
       </Navbar.Brand>

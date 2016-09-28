@@ -1,6 +1,6 @@
 export default [
   {
-    model: 'User',
+    model: 'user',
     records: [
       {
         id: 1,
@@ -12,7 +12,7 @@ export default [
     ],
   },
   {
-    model: 'Unit',
+    model: 'unit',
     records: [
       { id: 1, name: 'ks' },
       { id: 2, name: 'g' },
@@ -28,7 +28,7 @@ export default [
     ],
   },
   {
-    model: 'IngredientType',
+    model: 'ingredientType',
     records: [
       { id: 1, name: 'Rýže', unitId: 2 },
       { id: 2, name: 'Cibule', unitId: 1 },
@@ -38,7 +38,7 @@ export default [
     ],
   },
   {
-    model: 'FoodTag',
+    model: 'foodTag',
     records: [
       { id: 1, name: 'meat-preference-meat' },
       { id: 2, name: 'meat-preference-vegetarian' },
@@ -58,7 +58,7 @@ export default [
     ],
   },
   {
-    model: 'FoodTagCategory',
+    model: 'foodTagCategory',
     records: [
       {
         id: 1,
@@ -83,7 +83,7 @@ export default [
     ],
   },
   {
-    model: 'Recipe',
+    model: 'recipe',
     records: [
       {
         id: 1,
@@ -102,7 +102,7 @@ opepříme a vše vmícháme k uvařené rýži. Podáváme se salátem.`,
     ],
   },
   {
-    model: 'Ingredient',
+    model: 'ingredient',
     records: [
       {
         id: 1,

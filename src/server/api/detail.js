@@ -2,13 +2,13 @@ import fail from './fail';
 import respond from './respond';
 
 export const findRecipe = (db, id) =>
-  db.Recipe.findOne({
+  db.models.recipe.findOne({
     where: { id, visible: true },
     include: [
       {
-        as: 'Ingredients',
-        model: db.Ingredient,
-        include: [db.IngredientType, db.Unit],
+        as: 'ingredients',
+        model: db.models.ingredient,
+        include: [db.models.ingredientType, db.models.unit],
       },
     ],
   });

@@ -21,31 +21,31 @@ export default (passedConfig = {}) => {
 
   const db = new Sequelize(config.database, config.user, config.password, config);
 
-  db.define('User', {
+  db.define('user', {
     login: { type: Sequelize.STRING, unique: true },
     password: { type: Sequelize.STRING },
     disabled: { type: Sequelize.BOOLEAN },
   });
 
-  const FoodTag = db.define('FoodTag', {
+  const FoodTag = db.define('foodTag', {
     name: { type: Sequelize.STRING, unique: true },
   });
 
-  const FoodTagCategory = db.define('FoodTagCategory', {
+  const FoodTagCategory = db.define('foodTagCategory', {
     name: { type: Sequelize.STRING },
   });
 
-  const RecipeTime = db.define('RecipeTime', {
+  const RecipeTime = db.define('recipeTime', {
     name: { type: Sequelize.STRING },
     duration: { type: Sequelize.INTEGER.UNSIGNED },
   });
 
-  const RecipeImage = db.define('RecipeImage', {
+  const RecipeImage = db.define('recipeImage', {
     filename: { type: Sequelize.STRING },
     comment: { type: Sequelize.STRING },
   });
 
-  const Recipe = db.define('Recipe', {
+  const Recipe = db.define('recipe', {
     name: { type: Sequelize.STRING },
     duration: { type: Sequelize.INTEGER },
     portions: { type: Sequelize.INTEGER },
@@ -54,17 +54,17 @@ export default (passedConfig = {}) => {
     visible: { type: Sequelize.BOOLEAN },
   });
 
-  const RecipeTags = db.define('RecipeTags', {});
+  const RecipeTags = db.define('recipeTags', {});
 
-  const Ingredient = db.define('Ingredient', {
+  const Ingredient = db.define('ingredient', {
     amount: { type: Sequelize.DECIMAL },
   });
 
-  const IngredientType = db.define('IngredientType', {
+  const IngredientType = db.define('ingredientType', {
     name: { type: Sequelize.STRING },
   });
 
-  const Unit = db.define('Unit', {
+  const Unit = db.define('unit', {
     name: { type: Sequelize.STRING },
   });
 
@@ -99,5 +99,6 @@ export default (passedConfig = {}) => {
   };
 
   db.seed = seed;
+  db.sync = db.sync.bind(db);
   return db;
 };
