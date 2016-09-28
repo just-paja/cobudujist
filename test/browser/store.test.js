@@ -4,7 +4,7 @@
 import { expect } from 'chai';
 import { browserHistory } from 'react-router';
 
-import configureStore from '../store';
+import configureStore from '../../src/browser/store';
 
 describe('configureStore', () => {
   let store;

@@ -12,7 +12,8 @@ import logger from './logger';
 import setup from './middlewares/frontendMiddleware';
 import staticFiles from './middlewares/staticFiles';
 import storageInit from './middlewares/storage';
-import databaseInit from './middlewares/database';
+import databaseInit from './database';
+import databaseMiddleware from './middlewares/database';
 
 
 const argv = minimist(process.argv.slice(2));
@@ -22,7 +23,7 @@ const storage = storageInit();
 
 app.use(bodyParser.json());
 
-db.connect()
+db.authenticate()
   .then(logger.databaseConnected)
   .then(db.sync)
   .then(logger.databaseSynchronized)
@@ -30,7 +31,7 @@ db.connect()
   .then(logger.databaseSeeded)
   .then(() => app
     .use(device.capture())
-    .use(db.middleware())
+    .use(databaseMiddleware(db))
     .use(storage.middleware())
     .use('/api', api)
     .use('/static', staticFiles)

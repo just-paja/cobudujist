@@ -38,7 +38,7 @@
     "lint:css": "stylelint ./src/**/*.css",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
-    "test": "cross-env NODE_ENV=test mocha src/browser/test src/server/test --compilers js:babel-register --recursive --require ./mocha.setup.js",
+    "test": "cross-env NODE_ENV=test mocha test --compilers js:babel-register --recursive --require ./mocha.setup.js",
     "test:watch": "npm run test -- --watch --watch-extensions js,css",
     "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
   },

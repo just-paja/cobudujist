@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import databaseInit from '../../middlewares/database';
-import { findRecipe } from '../../api/detail';
+import databaseInit from '../../../src/server/database';
+import { findRecipe } from '../../../src/server/api/detail';
 
 describe('API detail', () => {
   beforeEach(function beforeHook() {
-    this.db = databaseInit({}, { storage: ':memory:' });
+    this.db = databaseInit({ storage: 'test.sqlite' });
     return this.db
-      .connect()
-      .then(this.db.sync)
+      .authenticate()
+      .then(this.db.sync.bind(this.db))
       .then(() => Promise.all([
         this.db.models.Unit.upsert({ id: 1, name: 'g' }),
         this.db.models.IngredientType.upsert({ id: 1, name: 'Rýže', unitId: 1 }),

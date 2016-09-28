@@ -18,13 +18,6 @@
       "jsx": true
     }
   },
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "./internals/webpack/webpack.test.babel.js"
-      }
-    }
-  },
   "rules": {
     "import/no-extraneous-dependencies": 0,
     "react/jsx-filename-extension": 0,

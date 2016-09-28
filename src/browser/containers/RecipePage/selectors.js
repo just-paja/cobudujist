@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectRecipeDetail = () => createSelector(
+export const selectRecipeDetail = () => createSelector(
   state => state.recipe,
   recipe => ({ detail: recipe.detail.recipe }),
 );

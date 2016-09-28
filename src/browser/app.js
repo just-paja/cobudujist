@@ -1,7 +1,5 @@
 import 'babel-polyfill';
 
-/* eslint-disable-next-line import/no-unresolved */
-import '!file?name=[name].[ext]!./manifest.json';
 import 'sanitize.css/sanitize.css';
 
 // Import all the third party stuff

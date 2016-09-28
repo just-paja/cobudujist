@@ -6,7 +6,7 @@ export const findRecipe = (db, id) =>
     where: { id, visible: true },
     include: [
       {
-        as: 'ingredients',
+        as: 'Ingredients',
         model: db.Ingredient,
         include: [db.IngredientType, db.Unit],
       },
